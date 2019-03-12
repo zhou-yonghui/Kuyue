@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>排行榜单</title>
+    <link rel="stylesheet" href="../static/css/ranking_list.css">
+</head>
+<body>
+<div id="container">
+    <header>
+        <iframe src="/Header/" width="1200px" FRAMEBORDER="0" height="130px">
+        </iframe>
+    </header>
+    <div id="menu">
+        <div id="menu_title">
+            <h1>人气榜单</h1>
+            <p>2018-10-17 14:14<span>更新</span></p>
+        </div>
+        <hr>
+        {#        <div id="kind">#}
+        {#            <div id="kind_title">#}
+        {#                <p>全部分类</p>#}
+        {#            </div>#}
+        {#            <ul>#}
+        {#                <li>玄幻</li>#}
+        {#                <li>奇幻</li>#}
+        {#                <li>武侠</li>#}
+        {#                <li>仙侠</li>#}
+        {#                <li>都市</li>#}
+        {#                <li>现实</li>#}
+        {#                <li>军事</li>#}
+        {#                <li>历史</li>#}
+        {#                <li>游戏</li>#}
+        {#                <li>体育</li>#}
+        {#                <li>科幻</li>#}
+        {#                <li>灵异</li>#}
+        {#            </ul>#}
+        {#        </div>#}
+    </div>
+    <div id="list">
+        <div id="list1">
+            <p class="list_title"><strong>人气榜</strong><span class="list_title_more"><a href="/ranking/click/">更多</a></span></p>
+            <hr class=list_line>
+            <div class="list_first">
+                <div class=list_first_1>
+                    <div class=list_1><strong>NO.1</strong></div>
+                    <div class="list_1_name" ><a href="/Details/?book_id={{ cc_1.book_id }}" >{{ cc_1.book_name }}</a></div>
+                    <div class="list_count">{{ cc_1.book_clickcount }}<span class="list_count_1">点击</span></div>
+                    <div class="list_kind"><a href="/classify/?type={{ cc_1.kind_name }}">{{ cc_1.kind_name }}</a><span class="list_author"><a
+                            href="/author/?user_id={{ cc_1.user_id }}">{{ cc_1.user_name }}</a></span></div>
+                </div>
+                <div class=list_first_2>
+                    <a href="/Details/?book_id={{ cc_1.book_id }}" > <img src="{{ cc_1.book_image }}" width="90" height="130" alt=""></a>
+                </div>
+            </div>
+            <ul class="list_ul">
+                {%  for i in cc%}
+                <hr class="list_ul_line">
+                <li style="list-style: url('/static/image/l{{ forloop.counter }}.png')"><a href="/Details/?book_id={{ i.book_id }}">{{ i.book_name }}</a></li>
+                {% endfor %}
+
+            </ul>
+        </div>
+        <div id="list2">
+            <p class="list_title"><strong>热销榜</strong><span class="list_title_more"><a href="/ranking/sell/">更多</a></span></p>
+            <hr class=list_line>
+            <div class="list_first">
+                <div class=list_first_1>
+                    <div class=list_1><strong>NO.1</strong></div>
+                    <div class="list_1_name" ><a href="/Details/?book_id={{ sc_1.book_id }}" >{{ sc_1.book_name }}</a></div>
+                    <div class="list_count">{{ sc_1.book_sellcount }}<span class="list_count_1">本</span></div>
+                    <div class="list_kind"><a href="/classify/?type={{ sc_1.kind_name }}">{{ sc_1.kind_name }}</a><span class="list_author"><a
+                            href="/author/?user_id={{sc_1.user_id }}">{{ sc_1.user_name }}</a></span></div>
+                </div>
+                <div class=list_first_2>
+                    <a href="/Details/?book_id={{ sc_1.book_id }}" ><img src="{{ sc_1.book_image }}" width="90" height="130" alt=""></a>
+                </div>
+            </div>
+            <ul class="list_ul">
+                {%  for i in sc%}
+                <hr class="list_ul_line">
+                <li style="list-style: url('/static/image/l{{ forloop.counter }}.png')"><a href="/Details/?book_id={{ i.book_id }}">{{ i.book_name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="list3">
+            <p class="list_title"><strong>推荐票榜</strong><span class="list_title_more"><a href="/ranking/ticket/">更多</a></span></p>
+            <hr class=list_line>
+            <div class="list_first">
+                <div class=list_first_1>
+                    <div class=list_1><strong>NO.1</strong></div>
+                    <div class="list_1_name" ><a href="/Details/?book_id={{ tc_1.book_id }}" >{{ tc_1.book_name }}</a></div>
+                    <div class="list_count">{{ tc_1.book_ticketcount }}<span class="list_count_1">票</span></div>
+                    <div class="list_kind"><a href="/classify/?type={{tc_1.kind_name }}">{{ tc_1.kind_name }}</a><span class="list_author"><a
+                            href="/author/?user_id={{tc_1.user_id }}">{{ tc_1.user_name }}</a></span></div>
+                </div>
+                <div class=list_first_2>
+                    <a href="/Details/?book_id={{ tc_1.book_id }}" ><img src="{{ tc_1.book_image }}" width="90" height="130" alt=""></a>
+                </div>
+            </div>
+            <ul class="list_ul">
+                {%  for i in tc%}
+                <hr class="list_ul_line">
+                <li style="list-style: url('/static/image/l{{ forloop.counter }}.png')"><a href="/Details/?book_id={{ i.book_id }}">{{ i.book_name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="list4">
+            <p class="list_title"><strong>字数榜</strong><span class="list_title_more"><a href="/ranking/len/">更多</a></span></p>
+            <hr class=list_line>
+            <div class="list_first">
+                <div class=list_first_1>
+                    <div class=list_1><strong>NO.1</strong></div>
+                    <div class="list_1_name" ><a href="/Details/?book_id={{ bw_1.book_id }}" >{{ bw_1.book_name }}</a></div>
+                    <div class="list_count">{{ bw_1.book_words }}<span class="list_count_1">字</span></div>
+                    <div class="list_kind"><a href="/classify/?type={{bw_1.kind_name }}">{{ bw_1.kind_name }}</a><span class="list_author"><a
+                            href="/author/?user_id={{bw_1.user_id }}">{{ bw_1.user_name }}</a></span></div>
+                </div>
+                <div class=list_first_2>
+                    <a href="/Details/?book_id={{ bw_1.book_id }}" ><img src="{{ bw_1.book_image }}" width="90" height="130" alt=""></a>
+                </div>
+            </div>
+            <ul class="list_ul">
+                {%  for i in bw%}
+                <hr class="list_ul_line">
+                <li style="list-style: url('/static/image/l{{ forloop.counter }}.png')"><a href="/Details/?book_id={{ i.book_id }}">{{ i.book_name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="list5">
+            <p class="list_title"><strong>玄幻人气榜</strong><span class="list_title_more"><a href="/ranking/click/?sid={{ 1 }},snum={{ 0 }}&kind=玄幻">更多</a></span></p>
+            <hr class=list_line>
+            <div class="list_first">
+                <div class=list_first_1>
+                    <div class=list_1><strong>NO.1</strong></div>
+                    <div class="list_1_name" ><a href="/Details/?book_id={{ xuanhuan_1.book_id }}" >{{ xuanhuan_1.book_name }}</a></div>
+                    <div class="list_count">{{ xuanhuan_1.book_clickcount  }}<span class="list_count_1">点击</span></div>
+                    <div class="list_kind"><a href="/classify/?type={{xuanhuan_1.kind_name }}">{{ xuanhuan_1.kind_name }}</a><span class="list_author"><a
+                            href="/author/?user_id={{xuanhuan_1.user_id }}">{{ xuanhuan_1.user_name }}</a></span></div>
+                </div>
+                <div class=list_first_2>
+                    <a href="/Details/?book_id={{ xuanhuan_1.book_id }}" ><img src="{{ xuanhuan_1.book_image }}" width="90" height="130" alt=""></a>
+                </div>
+            </div>
+            <ul class="list_ul">
+                {%  for i in xuanhuan%}
+                <hr class="list_ul_line">
+                <li style="list-style: url('/static/image/l{{ forloop.counter }}.png')"><a href="/Details/?book_id={{ i.book_id }}">{{ i.book_name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="list6">
+            <p class="list_title"><strong>二次元人气榜</strong><span class="list_title_more"><a href="/ranking/click/?sid={{ 1 }},snum={{ 0 }}&kind=二次元">更多</a></span></p>
+            <hr class=list_line>
+            <div class="list_first">
+                <div class=list_first_1>
+                    <div class=list_1><strong>NO.1</strong></div>
+                    <div class="list_1_name" ><a href="/Details/?book_id={{ erciyuan_1.book_id }}" >{{ erciyuan_1.book_name }}</a></div>
+                    <div class="list_count">{{ erciyuan_1.book_clickcount  }}<span class="list_count_1">点击</span></div>
+                    <div class="list_kind"><a href="/classify/?type={{erciyuan_1.kind_name }}">{{ erciyuan_1.kind_name }}</a><span class="list_author"><a
+                            href="/author/?user_id={{erciyuan_1.user_id }}">{{ erciyuan_1.user_name }}</a></span></div>
+                </div>
+                <div class=list_first_2>
+                    <a href="/Details/?book_id={{ erciyuan_1.book_id }}" ><img src="{{ erciyuan_1.book_image }}" width="90" height="130" alt=""></a>
+                </div>
+            </div>
+            <ul class="list_ul">
+                {%  for i in erciyuan%}
+                <hr class="list_ul_line">
+                <li style="list-style: url('/static/image/l{{ forloop.counter }}.png')"><a href="/Details/?book_id={{ i.book_id }}">{{ i.book_name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="list7">
+            <p class="list_title"><strong>武侠人气榜</strong><span class="list_title_more"><a href="/ranking/click/?sid={{ 1 }},snum={{ 0 }}&kind=武侠">更多</a></span></p>
+            <hr class=list_line>
+            <div class="list_first">
+                <div class=list_first_1>
+                    <div class=list_1><strong>NO.1</strong></div>
+                    <div class="list_1_name" ><a href="/Details/?book_id={{ wuxia_1.book_id }}" >{{  wuxia_1.book_name }}</a></div>
+                    <div class="list_count">{{  wuxia_1.book_clickcount  }}<span class="list_count_1">点击</span></div>
+                    <div class="list_kind"><a href="/classify/?type={{ wuxia_1.kind_name }}">{{  wuxia_1.kind_name }}</a><span class="list_author"><a
+                            href="/author/?user_id={{ wuxia_1.user_id }}">{{  wuxia_1.user_name }}</a></span></div>
+                </div>
+                <div class=list_first_2>
+                    <a href="/Details/?book_id={{wuxia_1.book_id }}" ><img src="{{  wuxia_1.book_image }}" width="90" height="130" alt=""></a>
+                </div>
+            </div>
+            <ul class="list_ul">
+                {%  for i in  wuxia%}
+                <hr class="list_ul_line">
+                <li style="list-style: url('/static/image/l{{ forloop.counter }}.png')"><a href="/Details/?book_id={{ i.book_id }}">{{ i.book_name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="list8">
+            <p class="list_title"><strong>仙侠人气榜</strong><span class="list_title_more"><a href="/ranking/click/?sid={{ 1 }},snum={{ 0 }}&kind=仙侠">更多</a></span></p>
+            <hr class=list_line>
+            <div class="list_first">
+                <div class=list_first_1>
+                    <div class=list_1><strong>NO.1</strong></div>
+                    <div class="list_1_name" ><a href="/Details/?book_id={{ xianxia_1.book_id }}" >{{   xianxia_1.book_name }}</a></div>
+                    <div class="list_count">{{   xianxia_1.book_clickcount  }}<span class="list_count_1">点击</span></div>
+                    <div class="list_kind"><a href="/classify/?type={{  xianxia_1.kind_name }}">{{  xianxia_1.kind_name }}</a><span class="list_author"><a
+                            href="/author/?user_id={{  xianxia_1.user_id }}">{{  xianxia_1.user_name }}</a></span></div>
+                </div>
+                <div class=list_first_2>
+                    <a href="/Details/?book_id={{ xianxia_1.book_id }}" ><img src="{{   xianxia_1.book_image }}" width="90" height="130" alt=""></a>
+                </div>
+            </div>
+            <ul class="list_ul">
+                {%  for i in   xianxia%}
+                <hr class="list_ul_line">
+                <li style="list-style: url('/static/image/l{{ forloop.counter }}.png')"><a href="/Details/?book_id={{ i.book_id }}">{{ i.book_name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="list9">
+            <p class="list_title"><strong>都市人气榜</strong><span class="list_title_more"><a href="/ranking/click/?sid={{ 1 }},snum={{ 0 }}&kind=都市">更多</a></span></p>
+            <hr class=list_line>
+            <div class="list_first">
+                <div class=list_first_1>
+                    <div class=list_1><strong>NO.1</strong></div>
+                    <div class="list_1_name" ><a href="/Details/?book_id={{ dushi_1.book_id }}" >{{   dushi_1.book_name }}</a></div>
+                    <div class="list_count">{{   dushi_1.book_clickcount  }}<span class="list_count_1">点击</span></div>
+                    <div class="list_kind"><a href="/classify/?type={{  dushi_1.kind_name }}">{{  dushi_1.kind_name }}</a><span class="list_author"><a
+                            href="/author/?user_id={{  dushi_1.user_id }}">{{  dushi_1.user_name }}</a></span></div>
+                </div>
+                <div class=list_first_2>
+                    <a href="/Details/?book_id={{ dushi_1.book_id }}" ><img src="{{  dushi_1.book_image }}" width="90" height="130" alt=""></a>
+                </div>
+            </div>
+            <ul class="list_ul">
+                {%  for i in   dushi%}
+                <hr class="list_ul_line">
+                <li style="list-style: url('/static/image/l{{ forloop.counter }}.png')"><a href="/Details/?book_id={{ i.book_id }}">{{ i.book_name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="list10">
+            <p class="list_title"><strong>现实人气榜</strong><span class="list_title_more"><a href="/ranking/click/?sid={{ 1 }},snum={{ 0 }}&kind=现实">更多</a></span></p>
+            <hr class=list_line>
+            <div class="list_first">
+                <div class=list_first_1>
+                    <div class=list_1><strong>NO.1</strong></div>
+                    <div class="list_1_name" ><a href="/Details/?book_id={{ xianshi_1.book_id }}" >{{   xianshi_1.book_name }}</a></div>
+                    <div class="list_count">{{   xianshi_1.book_clickcount  }}<span class="list_count_1">点击</span></div>
+                    <div class="list_kind"><a href="/classify/?type={{ xianshi_1.kind_name }}">{{ xianshi_1.kind_name }}</a><span class="list_author"><a
+                            href="/author/?user_id={{  xianshi_1.user_id }}">{{  xianshi_1.user_name }}</a></span></div>
+                </div>
+                <div class=list_first_2>
+                    <a href="/Details/?book_id={{ xianshi_1.book_id }}" ><img src="{{ xianshi_1.book_image }}" width="90" height="130" alt=""></a>
+                </div>
+            </div>
+            <ul class="list_ul">
+                {%  for i in  xianshi%}
+                <hr class="list_ul_line">
+                <li style="list-style: url('/static/image/l{{ forloop.counter }}.png')"><a href="/Details/?book_id={{ i.book_id }}">{{ i.book_name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="list11">
+            <p class="list_title"><strong>军事人气榜</strong><span class="list_title_more"><a href="/ranking/click/?sid={{ 1 }},snum={{ 0 }}&kind=军事">更多</a></span></p>
+            <hr class=list_line>
+            <div class="list_first">
+                <div class=list_first_1>
+                    <div class=list_1><strong>NO.1</strong></div>
+                    <div class="list_1_name" ><a href="/Details/?book_id={{ junshi_1.book_id }}" >{{  junshi_1.book_name }}</a></div>
+                    <div class="list_count">{{   junshi_1.book_clickcount  }}<span class="list_count_1">点击</span></div>
+                    <div class="list_kind"><a href="/classify/?type={{ junshi_1.kind_name }}">{{ junshi_1.kind_name }}</a><span class="list_author"><a
+                            href="/author/?user_id={{  junshi_1.user_id }}">{{ junshi_1.user_name }}</a></span></div>
+                </div>
+                <div class=list_first_2>
+                    <a href="/Details/?book_id={{ junshi_1.book_id }}" ><img src="{{junshi_1.book_image }}" width="90" height="130" alt=""></a>
+                </div>
+            </div>
+            <ul class="list_ul">
+                {%  for i in  junshi%}
+                <hr class="list_ul_line">
+                <li style="list-style: url('/static/image/l{{ forloop.counter }}.png')"><a href="/Details/?book_id={{ i.book_id }}">{{ i.book_name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="list12">
+            <p class="list_title"><strong>历史人气榜</strong><span class="list_title_more"><a href="/ranking/click/?sid={{ 1 }},snum={{ 0 }}&kind=历史">更多</a></span></p>
+            <hr class=list_line>
+            <div class="list_first">
+                <div class=list_first_1>
+                    <div class=list_1><strong>NO.1</strong></div>
+                    <div class="list_1_name" ><a href="/Details/?book_id={{ lishi_1.book_id }}" >{{  lishi_1.book_name }}</a></div>
+                    <div class="list_count">{{   lishi_1.book_clickcount }}<span class="list_count_1">点击</span></div>
+                    <div class="list_kind"><a href="/classify/?type={{ lishi_1.kind_name }}">{{lishi_1.kind_name }}</a><span class="list_author"><a
+                            href="/author/?user_id={{  lishi_1.user_id }}">{{ lishi_1.user_name }}</a></span></div>
+                </div>
+                <div class=list_first_2>
+                    <a href="/Details/?book_id={{ lishi_1.book_id }}" > <img src="{{lishi_1.book_image }}" width="90" height="130" alt=""></a>
+                </div>
+            </div>
+            <ul class="list_ul">
+                {%  for i in  lishi%}
+                <hr class="list_ul_line">
+                <li style="list-style: url('/static/image/l{{ forloop.counter }}.png')"><a href="/Details/?book_id={{ i.book_id }}">{{ i.book_name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+
+</div>
+
+</body>
+</html>

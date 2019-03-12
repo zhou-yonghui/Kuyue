@@ -1,0 +1,311 @@
+
+body {
+    background: white;
+    font: 14px Arial, 'Microsoft YaHei';
+    margin: 0px;
+    padding: 0px;
+}
+
+#container {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#menu {
+    margin-left: 20px;
+}
+
+#menu_title {
+
+    display: flex;
+    width: 300px;
+    height: 55px;
+}
+
+#menu_title p {
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+#menu hr {
+    width: 100%;
+    border: 0.3px solid black;
+}
+
+#menu span {
+    padding-left: 8px;
+}
+
+#kind {
+    display: flex;
+    margin-left: 8px;
+    width: 950px;
+    height: 45px;
+    background-image: url("/static/image/bg2.png");
+}
+
+#kind_title {
+    padding-left: 20px;
+    width: 70px;
+    height: 30px;
+}
+
+#kind_title p {
+    font-family: 宋体;
+    color: red;
+}
+
+#kind ul li {
+    color: #b5a3cc;
+    list-style: url("/static/image/sc5.png");
+    padding-top: 0px;
+    float: left;
+    padding-right: 30px;
+    font-size: 13px;
+}
+
+#list {
+    width: 1200px;
+    height: auto;
+}
+
+#list1 {
+    float: left;
+    width: 260px;
+    margin-left: 20px;
+}
+
+#list5 {
+    float: left;
+    width: 260px;
+    margin-left: 20px;
+}
+
+
+#list9 {
+    float: left;
+    width: 260px;
+    margin-left: 20px;
+}
+
+#list13 {
+    float: left;
+    width: 260px;
+    margin-left: 20px;
+}
+
+.list_title {
+    width: 260px;
+    font-size: 20px;
+}
+
+.list_title_more a
+{
+     color: gray;
+    text-decoration: none;
+    transition: all 0.6s;
+}
+
+.list_title_more a:hover
+{
+    color: red;
+}
+.list_title_more {
+    line-height: 30px;
+    float: right;
+    padding-right: 20px;
+    font-size: 15px;
+    color: blue;
+}
+
+.list_line {
+    border: 0.5px solid black;
+    margin-left: 0px;
+    width: 260px;
+}
+
+.list_first {
+    width: 400px;
+    height: auto;
+    display: flex;
+}
+
+.list_first_1 {
+    width: 150px;
+    height: auto;
+}
+
+.list_1 {
+
+    margin-top: 20px;
+    margin-left: 15px;
+    width: 35px;
+    height: 20px;
+    background: red;
+    color: white;
+}
+
+.list_1_name a
+{
+    color: black;
+    text-decoration: none;
+    transition: all 0.6s;
+}
+.list_1_name a:hover
+{
+    color: red;
+}
+
+.list_ul li a
+{
+    color: #5e5e5e;
+    text-decoration: none;
+    transition: all 0.6s;
+}
+
+.list_ul li a:hover
+{
+    color: red;
+}
+
+
+.list_1_name {
+
+    width: 260px;
+    margin-left: 15px;
+    margin-top: 2px;
+    font-size: 17px;
+}
+
+.list_count {
+    width: 260px;
+    font-size: 19px;
+    color: red;
+    margin-left: 15px;
+    margin-top: 2px;
+}
+
+.list_count_1 {
+    font-size: 10px;
+    padding-left: 3px;
+
+}
+
+.list_kind a
+{
+    color: #5e5e5e;
+    text-decoration: none;
+    transition: all 0.6s;
+}
+
+.list_kind a:hover
+{
+    color: red;
+
+}
+
+.list_kind {
+    width: 260px;
+    font-size: 12px;
+    color: grey;
+    margin-left: 15px;
+    margin-top: 20px;
+}
+
+.list_author {
+    padding-left: 15px;
+}
+
+.list_first_2 {
+    width: 140px;
+}
+
+.list_ul li {
+    padding-left: 10px;
+    font-size: 14px;
+    font-family: Arial;
+    margin-top:7px;
+    margin-bottom:10px;
+    width: 300px;
+    height:20px;
+}
+
+.list_ul_line {
+    border: 0.5px dotted grey;
+
+    margin-left: 13px;
+    width: 200px;
+}
+
+#list2 {
+    float: left;
+    width: 260px;
+    margin-left: 35px;
+}
+
+#list3 {
+    float: left;
+    width: 260px;
+    margin-left: 35px;
+}
+
+#list4 {
+    float: left;
+    width: 260px;
+    margin-left: 35px;
+}
+
+#list6 {
+    float: left;
+    width: 260px;
+    margin-left: 35px;
+}
+
+#list7 {
+    float: left;
+    width: 260px;
+    margin-left: 35px;
+}
+
+#list8 {
+    float: left;
+    width: 260px;
+    margin-left: 35px;
+}
+
+#list10{
+    float: left;
+    width: 260px;
+    margin-left: 35px;
+}
+
+#list11 {
+    float: left;
+    width: 260px;
+    margin-left: 35px;
+}
+
+#list12{
+    float: left;
+    width: 260px;
+    margin-left: 35px;
+}
+
+#list14 {
+    float: left;
+    width: 260px;
+    margin-left: 35px;
+}
+
+#list15{
+    float: left;
+    width: 260px;
+    margin-left: 35px;
+}
+
+#list16{
+    float: left;
+    width: 260px;
+    margin-left: 35px;
+}

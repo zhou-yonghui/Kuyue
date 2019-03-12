@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/TalkDetailsCss.css">
+    <script charset="utf-8" src="../static/js/kindeditor/kindeditor-all.js"></script>
+    <script charset="utf-8" src="../static/js/kindeditor/lang/zh-CN.js"></script>
+    <script src="../static/jquery.min.js"></script>
+    <script>
+        KindEditor.ready(function (K) {
+            window.editor = K.create('#editor_id', {
+                width: '750',
+                height: '180',
+                resizeType: '0',
+                newlineTag: "br",
+                uploadJson: "/kuyue/img/",
+                items: ["emoticons"],
+            });
+        });
+
+        function fun1() {
+            var edit = document.getElementById("edit");
+            edit.style.display = "block";
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+        function fun2() {
+            var edit = document.getElementById("edit");
+            edit.style.display = "none";
+        }
+
+
+        $(function () {
+            $("body").on('click', '.likes', function () {
+                if ($(this).css('color') == "rgb(128, 128, 128)") {
+                    $(this).css('color', 'red');
+                    talk_id = $(this).attr('name');
+                    $.ajax({
+                        type: 'POST',
+                        url: "/Likes1/",
+                        data: {talk_id: talk_id},
+                        dataType: "JSON",
+                        success: function (data) {
+                            if (data['title']) {
+                                $("#disappare").show().delay(3000).hide(300);
+                            }
+                            else {
+                                $("*[name=" + talk_id + "]").html("");
+                                var show1 = '';
+                                show1 += '<span class="like" style="color: red">&#10084;' + data['talk_like'] + '</span>';
+                                $("*[name=" + talk_id + "]").html(show1);
+                                talk_id = ""
+                            }
+                        }
+                    })
+                }
+                else {
+                    $(this).css('color', 'grey');
+                    talk_id = $(this).attr('name');
+                    $.ajax({
+                        type: 'POST',
+                        url: "/Likes2/",
+                        data: {talk_id: talk_id},
+                        dataType: "JSON",
+                        success: function (data) {
+                            if (data['title']) {
+                                $("#disappare").show().delay(3000).hide(300);
+                            }
+                            else {
+                                $("*[name=" + talk_id + "]").html("");
+                                var show1 = '';
+                                show1 += '<span class="like">&#10084;' + data['talk_like'] + '</span>';
+                                $("*[name=" + talk_id + "]").html(show1);
+                                talk_id = ""
+                            }
+                        }
+                    })
+                }
+            })
+        })
+
+
+        var talk_id = '';
+        var book_id = '';
+        $(function () {
+            $("#butt").click(function () {
+                html = editor.html();
+                $.ajax({
+                    type: 'POST',
+                    url: "/TalkDetails/",
+                    data: {html: html, talk_id: talk_id, book_id: book_id},
+                    dataType: "JSON",
+                    success: function (data) {
+                        if (data['title']) {
+                            $("#disappare").show().delay(3000).hide(300);
+                        }
+                        else {
+                            $("#xunhuan").html("");
+                            var show = '';
+                            $.each(data["data"], function (i, n) {
+                                show += '<li><img src="../static/image/line.png" width="750px">';
+                                show += '<div style="display: flex">';
+                                show += '<div id="userimg"><a href="/author_look/"><img width="43" height="46" src=' + n.user_image + '></a></div>';
+                                show += '<div id="username">';
+                                show += '<div><a class="other_like" href="/author_look/" style="color: blue;text-decoration: none"><span>' + n.user_name + '&nbsp&nbsp</span></a><span style="color: grey">回复&nbsp&nbsp</span><span>' + n.parent_name + '</span></div>';
+                                show += '<p class="talkcontent"><a class="other_like"  style="color: red;">' + n.talk_content + '</a></p>';
+                                show += '<div class="spanstyle">';
+                                show += '<span>' + n.floor_id + '楼&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>';
+                                show += '<span style="color: grey">' + n.talk_time + '</span>';
+                                show += '<span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span><a class="response_a" onclick="fun1()" id=' + n.talk_id + '><img src="../static/image/huifu.png">' + n.response_count + '条回复</a><span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span><span class="likes" name=' + n.talk_id + '><span class="like">&#10084;' + n.talk_like + '</span></span>';
+                                show += '</div>';
+                                show += '</div>';
+                                show += '</div>';
+                                show += '</li>';
+                            });
+                            $("#xunhuan").html(show);
+                            editor.html("");
+                            $("#edit").attr("style", "display:none;");
+                            talk_id = '';
+                            book_id = '';
+                        }
+                    }
+                })
+            });
+
+            $("body").on("click", '.response_a', function () {
+                talk_id = $(this).attr('id');
+                book_id = $(".book_name").attr('id');
+            })
+        });
+    </script>
+
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <iframe src="/Header/" width="1200px" FrameBorder="0" height="135px"></iframe>
+    </header>
+
+    <div id="disappare" style="display: none;">
+        <p>请先登录！！！</p>
+    </div>
+
+    {% autoescape off %}
+        <section id="content">
+            <p class="book_name" id={{ book_list.book_id }}><a href="/Talk/?book_id={{ book_list.book_id }} "><span
+                    style="font-weight: bold;">{{ book_list.book_name }}>></span></a>评论详情</p>
+            {#        <div style="display: flex">#}
+            {#            <div id="UserImg"><img src="../static/image/sc5.png"></div>#}
+            {#            <div id="UserName"><a>毒性哈密瓜</a></div>#}
+            {#            <div id="UserTime"><p>2018-08-15 10:30:04</p></div>#}
+            {#        </div>#}
+            {#        <div id="Text">#}
+            {##}
+            {#        </div>#}
+            {#        <div id="DianZan"><img src="../static/image/dianzan.png"></div>#}
+        </section>
+
+
+        <footer style="margin-bottom: 150px">
+            <ul>
+                <li>
+                    <div style="display: flex;margin-bottom: 30px">
+                        <div id="userimg"><a href="/author_look/"><img width="43" height="46"
+                                                                       src={{ talk_list_1.user_image }}></a></div>
+                        <div id="username">
+                            <div><a class="other_like" href="/author_look/"
+                                    style="color: blue;text-decoration: none"><span>{{ talk_list_1.user_name }}&nbsp</span></a>
+                                <span style="color: grey">的评论</span></div>
+                            <p class="talkcontent"><a class="other_like"
+                                                      style="color: red;">{{ talk_list_1.talk_content }}</a>
+                            </p>
+                            <div class="spanstyle">
+                                <span style="color: grey">{{ talk_list_1.talk_time }}</span>
+                                <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                <a id="{{ talk_list_1.talk_id }}" class="response_a" onclick="fun1()"><img
+                                        src="../static/image/huifu.png">{{ talk_list_1.response_count }}条回复</a>
+                                <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                <span name={{ talk_list_1.talk_id }} class="likes">
+                                    <span class="like">&#10084;{{ talk_list_1.talk_like }}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <div id="xunhuan" style="margin-bottom: 50px">
+                    {% for row in response %}
+                        <li>
+                            <img src="../static/image/line.png" width="750px">
+                            <div style="display: flex">
+                                <div id="userimg"><a href="/author_look/"><img width="43" height="46"
+                                                                               src={{ row.user_image }}></a></div>
+                                <div id="username">
+                                    <div><a class="other_like" href="/author_look/"
+                                            style="color: blue;text-decoration: none"><span>{{ row.user_name }}&nbsp&nbsp</span></a><span
+                                            style="color: grey">回复&nbsp&nbsp</span><span>{{ row.parent_name }}</span>
+                                    </div>
+                                    <p class="talkcontent"><a class="other_like"
+                                                              style="color: red;">{{ row.talk_content }}</a></p>
+                                    <div class="spanstyle">
+                                        <span>{{ row.floor_id }}楼&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                        <span style="color: grey">{{ row.talk_time }}</span>
+                                        <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span><a class="response_a"
+                                                                                                onclick="fun1()"
+                                                                                                id={{ row.talk_id }}>
+                                        <img src="../static/image/huifu.png">{{ row.response_count }}条回复</a>
+                                        <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                        <span name={{ row.talk_id }} class="likes"><span
+                                                class="like">&#10084;{{ row.talk_like }}</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </div>
+            </ul>
+
+            <div style="margin-left: 40px">
+                <div id="edit" style="display: none">
+                <textarea id="editor_id" name="content">
+                </textarea>
+                    <button id="butt1" onclick="fun2()">取消</button>
+                    <button id="butt">发表</button>
+                </div>
+            </div>
+        </footer>
+    {% endautoescape %}
+</div>
+</body>
+</html>

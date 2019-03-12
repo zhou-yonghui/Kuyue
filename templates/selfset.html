@@ -1,0 +1,331 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+    <title>个人信息设置</title>
+    <script src="/static/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $("#imageInput").change(function () {
+                var $file = $(this);
+                var objUrl = $file[0].files[0];
+                var windowURL = window.URL || window.webkitURL;
+                var dataURL = windowURL.createObjectURL(objUrl);
+
+                function blobToImage(blob, cb) {
+                    fileOrBlobToDataURL(blob, function (dataurl) {
+                        var img = new Image();
+                        img.src = dataurl;
+                        alert(img.src)
+                        cb(img);
+                    });
+                }
+
+                $("#consignerRdSign").attr("src", dataURL);
+            });
+        });
+    </script>
+    <style>
+        body {
+            background: white;
+            font: 14px Arial, 'Microsoft YaHei';
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #header {
+            margin-left: 20px;
+        }
+
+        #header p {
+            color: blue;
+        }
+
+        #header1 {
+            color: black;
+        }
+
+        #header2 {
+            color: #cccccc;
+        }
+
+        #formbox {
+            margin-left: 120px;
+            width: 960px;
+            height: 1000px;
+            border: 1px solid black;
+        }
+
+        #consignerRdSign {
+            margin-top: 70px;
+            margin-left: 70px;
+        }
+
+        .info {
+            width: 900px;
+            height: 30px;
+            font-size: 16px;
+            display: flex;
+            margin-left: 70px;
+            margin-top: 30px;
+        }
+
+        .info input {
+            font-size: 16px;
+            margin-top: 15px;
+            width: 220px;
+            height: 20px;
+            margin-right: 50px;
+        }
+
+        .info_name {
+            width: 80px;
+            padding-right: 50px;
+        }
+
+        #formbox_info {
+            width: 960px;
+            display: flex;
+            height: 800px;
+        }
+
+        label {
+            position: relative;
+            top: 14px;
+            font-size: 16px;
+            color: #B7BABB;
+            line-height: 16px;
+            padding-right: 20px;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        input[type='radio'] + label:before {
+            margin-top: -2px;
+            content: '';
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            margin-right: 20px;
+            border-radius: 100%;
+            vertical-align: middle;
+            border: 1px solid #E4E4E4;
+            background: #FFFFFF;
+        }
+
+        input[type='radio']:checked + label:before {
+            background-image: url("/static/image/sc9.png");
+            background-size: cover;
+            /*background: #777777;*/
+        }
+
+        #mytext {
+            font-size: 17px;
+        }
+
+    </style>
+
+
+</head>
+<body>
+<div id="container">
+    <iframe src="/Header/" width="1200px" height="123.5px" frameborder="0"></iframe>
+    <div id="header">
+        <p>首页<span id="header1"> > </span><span id="header2">个人信息设置</span></p>
+    </div>
+    <div id="formbox">
+        <form action="/selfset/" method="post" enctype="multipart/form-data">
+            <div id="formbox_img">
+                <img id="consignerRdSign" src="../static/image/sc7_ma.png" width="100px" height="100"
+                     onclick="F_Open_dialog('btn_file3')">
+                <input id="imageInput" name="img" type="file"/>
+                <div style="margin-left: 70px"><p>本地上传: 选择本地图片编辑后上传 (上传头像将会在2个工作日内进行审核，通过后需重新登录显示新头像)。<br><br>
+                    <span style="color: gray">支持jpg、gif、png格式图片，上传文件大小不超过5MB，图片尺寸需大于200*200</span></p>
+                </div>
+            </div>
+            <div id="formbox_info">
+                <ul>
+                    <li class="info">
+                        <p class="info_name">昵称：</p>
+                        <input AUTOCOMPLETE="off" type="text" id="name" style="border: 0px"
+                               value="{{ user.user_name }}"
+                               readonly='readonly' name="nickname" onblur="setReadonly()">
+                        <div id="">
+                            <p style="color: blue;width: 100px" onclick="readWrite();">修改昵称</p>
+                        </div>
+                    </li>
+                    <li class="info">
+                        <p class="info_name">书友ID：</p>
+                        <input type="text" name='nameid' style="border: 0px" value="书友212131112312" readonly='readonly'>
+                    </li>
+                    <li class="info">
+                        <p class="info_name">性别：</p>
+                        <input type="radio" name="sex" value="男" id="man">
+                        <label for="man">男</label>
+                        <input type="radio" name="sex" value="女" id="female">
+                        <label for="female">女</label>
+                    </li>
+                    <li class="info">
+                        <p class="info_name">生日：</p>
+                        <input type="date" name="date" id="mydate">
+                    </li>
+                    <li class="info">
+                        <p class="info_name">地区：</p>
+                        <select id="province" name="province">
+                            <option value="{{ address.province }}">{{ address.province }}</option>
+                        </select>
+                        <select id="city" name="city">
+                            <option value="{{ address.city }}">{{ address.city }}</option>
+                        </select>
+                        <select id="district" name="district">
+                            <option value="{{ address.area }}">{{ address.area }}</option>
+                        </select>
+                    </li>
+                    <li class="info">
+                        <p class="info_name">简介:</p>
+                        <textarea id="mytext" name="con" rows="45" cols="6" style="height: 200px;width: 280px"
+                                  placeholder="请输入文本内容"
+                                  value="{{ user.user_introduction }}">{{ user.user_introduction }}</textarea>
+                        <p><span id="text-count" style="display:none;">250</span>/250</p>
+                    </li>
+                    <li class="info">
+                        <input type="submit" value="保存"
+                               style="margin-top: 200px;width: 70px;height: 40px;border-radius: 10px;border: 1px solid darkgrey">
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+<script language="JavaScript">
+    function setReadonly() {
+        //document.getElementById("test").setAttribute("readOnly", true);
+        document.getElementById("name").readOnly = true;
+        document.getElementById("name").style.border = "0px"
+        var text = document.getElementById("name").valueOf().value
+        {#alert(text)#}
+        if (text == '') {
+            document.getElementById("name").valueOf().value = '{{ user.user_name }}'
+        }
+
+
+    }
+
+    function readWrite() {
+        //document.getElementById("test").setAttribute("readOnly", false);
+        document.getElementById("name").readOnly = false;
+        document.getElementById("name").style.border = "1px solid black"
+    }
+
+    function setRuleContent() {
+        var selectValue = $('#_select option:selected').text();//选中select的内容
+        //alert("selectValue" + selectValue);
+
+        var inputValue = $("#_input").val(selectValue);//input获得select的内容并显示在输入框中
+//alert(inputValue);
+    };
+</script>
+
+<script>
+    {#省市县联动#}
+    $(function () {
+        $.get('/getProvince/', function (data) {
+            for (var i = 0, len = data.provinces.length; i < len; i++) {
+                $new = $("<option value=" + data.provinces[i][0] + ">" + data.provinces[i][1] + "</option>");
+                $("#province").append($new);
+            }
+        });
+
+        $("#province").change(function () {
+
+            $("#city").empty().append('<option value="">请选择城市</option>');
+            $("#district").empty().append('<option value="">请选择区/县</option>');
+            $.ajax({
+                url: '/getCity/',
+                type: 'get',
+                data: {"city_id": $(this).val()}
+            }).done(function (data) {
+                for (var i = 0, len = data.cities.length; i < len; i++) {
+                    $new = $("<option value=" + data.cities[i][0] + ">" + data.cities[i][1] + "</option>");
+                    $("#city").append($new);
+                }
+            });
+        });
+
+        $("#city").change(function () {
+
+            $("#district").empty().append('<option value="">请选择区/县</option>');
+            $.ajax({url: '/getDistrict/', type: 'get', data: {"district_id": $(this).val()}}).done(function (data) {
+                for (var i = 0, len = data.district.length; i < len; i++) {
+                    $new = $("<option value=" + data.district[i][0] + ">" + data.district[i][1] + "</option>");
+                    $("#district").append($new);
+                }
+            });
+        });
+    });
+
+
+</script>
+{#生日#}
+<script>
+    window.onload = function () {
+        $('#mydate').attr('value', '{{ user.user_birth }}');
+        if ('{{ user.user_sex }}'=='男')
+        {
+            $("#man").attr("checked", "checked");
+            $("#female").removeAttr("checked");
+        }
+        else {
+            $("#female").attr("checked", "checked");
+            $("#man").removeAttr("checked");
+        }
+    }
+</script>
+{#文本域字数限制#}
+<script type="text/javascript">      /*字数限制*/
+$("#mytext").on("input propertychange", function () {
+    var $this = $(this), _val = $this.val(), count = "";
+    if (_val.length > 250) {
+        $this.val(_val.substring(0, 250));
+    }
+    count = 250 - $this.val().length;
+    $("#text-count").text(count);
+    document.getElementById('text-count').style.display = ""
+    $.ajax({
+        url: '/selfset/',
+        type: 'GET',
+        data: {'text': $('#mytext').val()},
+        success: function (data) {
+            console.log(data);
+        }
+    })
+
+});
+
+</script>
+{#<script>#}
+{#    $('#mytext').on('propertychange input', function(event){#}
+{#        document.getElementById('text-count').style.display = ""#}
+{#        $.ajax({#}
+{#        url: '/selfset/',#}
+{#        type: 'GET',#}
+{#        data: {'text': $('#mytext').val()},#}
+{#            success: function (data) {#}
+{#             console.log(data);#}
+{#            }#}
+{#        })#}
+{#    }#}
+{#</script>#}
+</html>

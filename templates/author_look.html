@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作者详情</title>
+    <style type="text/css">
+        body {
+            background: white;
+            font: 14px Arial, 'Microsoft YaHei';
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #content {
+            width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        #header {
+            height: 50px;
+            display: flex;
+        }
+
+        #header_title {
+            line-height: 0;
+            margin-left: 20px;
+
+        }
+
+        #header_label1 {
+            margin-top: 30px;
+            margin-left: 250px;
+        }
+
+        #header_label1 a {
+            color: black;
+            text-decoration: none;
+        }
+
+        #header_label1 a:hover {
+            color: red;
+            text-decoration: none;
+        }
+
+        #header_label2 {
+            margin-top: 30px;
+            margin-left: 50px;
+        }
+
+        #header_label2 a {
+            color: black;
+            text-decoration: none;
+        }
+
+        #header_label2 a:hover {
+            color: red;
+            text-decoration: none;
+        }
+
+        .btns {
+            margin-top: 23px;
+            width: 80px;
+            height: 40px;
+            border-radius: 5px;
+            background: url("../static/image/p2_hui.jpg") no-repeat left top;
+            color: #FFF;
+        }
+
+        #in1 {
+            margin-top: 23px;
+            margin-left: 150px;
+            width: 300px;
+            height: 25px;
+            border: 1px solid #ccc;
+            padding: 7px;
+            border-radius: 3px;
+            padding-left: 5px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+        }
+
+        #in1:focus {
+            border-color: #66afe9;
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
+        }
+
+        #menu {
+            margin-top: 24px;
+            margin-left: 20px;
+            width: 1160px;
+            height: 45px;
+            background: black;
+        }
+
+        #menu_ul li {
+            line-height: 45px;
+            text-align: center;
+            width: 222px;
+            height: 45px;
+            list-style: none;
+            color: white;
+            border-right: 1px dashed white;
+            float: left;
+        }
+
+        #menu_pc {
+            float: left;
+        }
+
+        #menu_ul {
+            margin-top: 0px;
+            font-size: 20px;
+        }
+
+        #author {
+            margin-left: 20px;
+            width: 1160px;
+            height: 230px;
+            background-image: url("../static/image/timg_hui.jpg");
+
+        }
+
+        {#圆形头像框#}
+        .round_icon {
+            width: 130px;
+            height: 130px;
+            display: flex;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        {#头像#}
+        #head {
+            width: 140px;
+            height: 140px;
+            padding-top: 30px;
+            float: left;
+        {#background-color: #888888;#}
+        }
+
+        #author_name {
+            padding-top: 40px;
+            padding-left: 200px;
+        {#background-color: #337AB7;#}
+        }
+
+        #message {
+            width: 60em;
+            padding-left: 20px;
+            float: left;
+        {#background-color:red;#}
+        }
+
+        {#个人主页#}
+        #personal {
+            float: right;
+            width: 100px;
+            height: 25px;
+            margin-top: 30px;
+            margin-right: 10px;
+            border-radius: 20px;
+            background: cornsilk;
+            text-align: center;
+            font-size: large;
+
+        }
+
+        #personal a {
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        #last_right {
+            float: right;
+            margin-top: 50px;
+
+        }
+
+        #last_right .btn {
+            width: 90px;
+            height: 25px;
+            font-size: 18px;
+            border-radius: 20px; /*控制圆角*/
+            background-color: crimson;
+
+        }
+
+        #last {
+            float: left;
+            padding-left: 20px;
+            padding-top: 50px;
+            background-color: ;
+        }
+
+        #contents {
+            width: 1160px;
+            height: 500px;
+            margin-left: 20px;
+
+        }
+
+        h1 {
+            width: 800px;
+
+        }
+
+        .hr1 {
+            width: 770px;
+        }
+
+        #left {
+
+            float: left;
+            width: 800px;
+        }
+
+        .book {
+            width: 100px;
+            height: 25px;
+            background-color: crimson;
+            font-size: small;
+            color: white;
+
+        }
+
+        .a1 {
+            margin-top: 30px;
+        }
+
+        .a11 {
+            width: 650px;
+            height: 50px;
+            float: right
+        }
+         .a11 h2{
+            margin-left: 20px;
+            margin-top: 10px;
+            color: black;
+        }
+        .a11 p{
+            margin-left: 20px;
+        }
+        .a11 input{
+            margin-top: 20px;
+            margin-left: 20px;
+            font-size: 15px;
+        }
+
+        #right {
+            float: right;
+            width: 350px;
+        }
+
+        .hr2 {
+        }
+
+        .a2 {
+            margin-top: 30px;
+        }
+
+        .a22 {
+            width: 100px;
+            float: right;
+            margin-top: 20px;
+            margin-right: 80px;
+        }
+        .a22 a{
+            text-decoration: none;
+            color: black;
+        }
+        .a22 p{
+
+        }
+        .author {
+            display: -webkit-flex;
+            display: flex;
+            flex-direction: row;
+
+        }
+
+        .dian {
+            width: 25px;
+            height: 15px;
+        }
+    </style>
+</head>
+<body>
+<div id="content">
+    <header>
+        <iframe src="/Header/" width="1200px" FrameBorder="0" height="135px"></iframe>
+    </header>
+
+    <div id="author">
+        <div id="head"><img src="{{ author.user_image }}" class="round_icon" alt=""></div>
+        <div id="author_name"><h3>{{ author.user_name }}</h3></div>
+        <div id="message"><p>{{ author.user_introduction }}</p></div>
+        <div id="personal"><a href="/self/">个人主页</a></div>
+        <div id="last"><span>作品总数：<span style="font-size:2em">{{ num }}</span>&nbsp;&nbsp;<span>本</span></span>&nbsp;&nbsp;&nbsp;&nbsp;<span>累计字数：<span
+                style="font-size: 2em">{{ author.book_words }}</span><span>&nbsp;&nbsp;</span>字</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div id="last_right">
+            <span>关注：<span style="font-size: 2em">8</span></span>&nbsp;&nbsp;
+            <span>粉丝：<span style="font-size: 2em">10086</span></span>&nbsp;&nbsp;
+            <input type="button" name="button" class="btn" value="关注">
+        </div>
+
+    </div>
+
+    <div id="contents">
+        <div id="left">
+            <h1>收藏书单</h1>
+            <div class="hr1">
+                <hr/>
+            </div>
+
+            {% for row in caselist %}
+            <div class="a1">
+                <a href="/Details/?book_id={{ row.book_id }}"><img src="{{ row.book_image }}"></a>
+                <div class="a11">
+                    <a href="/Details/?book_id={{ row.book_id }}" style="text-decoration: none"><h2>{{ row.book_name }}</h2></a>
+                    <p>{{ row.kind_name }}&nbsp;&nbsp;{{ row.book_state }}&nbsp;&nbsp;{{ row.book_words }}字</p>
+                    <p>{{ row.book_introduction }}</p>
+                    <a href="/Details/?book_id={{ row.book_id }}"><input type="button" value="书籍详情" class="book"></a>
+
+                </div>
+            </div>
+          {% endfor %}
+
+
+
+        </div>
+        <div id="right">
+            <h1>全部作品</h1>
+            <div class="hr2">
+                <hr/>
+            </div>
+
+             {% if author_long %}
+            {% for row in author_long %}
+            <div class="a2">
+                <a href="/Details/?book_id={{ row.book_id }}"><img style="width: 150px;height: 200px" src="{{ row.book_image }}"></a>
+                <div class="a22">
+                    <a href="/Details/?book_id={{ row.book_id }}"><p>{{ row.book_name }}</p></a>
+                    <div class="author">
+                        <div class="dian"><img src="../static/image/dian_hui.png"></div>
+                        <div>{{ row.user_name }}</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        {% else %}
+            {% for row in authorlist %}
+            <div class="a2">
+                <a href="/Details/?book_id={{ row.book_id }}"><img style="width: 150px;height: 200px" src="{{ row.book_image }}"></a>
+                <div class="a22">
+                   <a href="/Details/?book_id={{ row.book_id }}"> <p>{{ row.book_name }}</p></a>
+                    <div class="author">
+                        <div class="dian"><img src="../static/image/dian_hui.png"></div>
+                        <div>{{ row.user_name }}</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+</html>

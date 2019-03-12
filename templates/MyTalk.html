@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/MyTalkCss.css">
+    <script>
+        function pinglun() {
+            document.getElementById("talk").style.display = "block";
+            document.getElementById("talk1").style.display = "none";
+        }
+
+        function huifu() {
+            document.getElementById("talk").style.display = "none";
+            document.getElementById("talk1").style.display = "block";
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <header>
+        <iframe src="/Header/" width="1200px" FrameBorder="0" height="135px"></iframe>
+    </header>
+
+
+    <section id="content">
+        <div>
+            <a href="/self/" style="text-decoration: none"><span>首页</span></a>
+            <span>></span>
+            <span>我的书评</span>
+        </div>
+        <div class="TalkTitle">
+            <span id="shuping" onclick="pinglun()" style="cursor: pointer">我的书论</span>
+            <span>&nbsp&nbsp&nbsp&nbsp</span>
+            <span id="huifu" onclick="huifu()" style="cursor: pointer">我的回复</span>
+        </div>
+        {% autoescape off %}
+            <div id="talk">
+                <ul>
+                    {% for row in talk_list %}
+                        <li>
+                            <img src="../static/image/line.png" width="750px">
+                            <div style="display: flex">
+                                <div id="userimg"><a href="/author_look/"><img width="43" height="46"
+                                                                               src={{ row.user_image }}></a></div>
+                                <div id="username" style="margin-left: 10px">
+                                    <div><a class="other_like" href="/author_look/"
+                                            style="color: blue"><span>{{ row.user_name }}&nbsp&nbsp&nbsp</span></a>
+                                        <span style="color: grey">发表了评论</span></div>
+                                    <p class="talkcontent"><a class="other_like"
+                                                              href="/TalkDetails/?talk_id={{ row.talk_id }}"
+                                                              style="color: red;">{{ row.talk_content }}</a>
+                                    </p>
+                                    <div class="spanstyle">
+                                        <span style="color: grey">{{ row.talk_time }}</span>
+                                        <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                        <a id="user_response" href="/TalkDetails/?talk_id={{ row.talk_id }}"><img
+                                                src="../static/image/huifu.png">{{ row.response_count }}条回复</a>
+                                        <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                        <span name={{ row.talk_id }} class="likes"><span
+                                                class="like">&#10084;{{ row.talk_like }}</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div id="talk1" style="display: none">
+                <ul>
+                    {% for row in talk_list1 %}
+                        <li>
+                            <img src="../static/image/line.png" width="750px">
+                            <div style="display: flex">
+                                <div id="userimg"><a href="/author_look/"><img width="43" height="46"
+                                                                               src={{ row.user_image }}></a></div>
+                                <div id="username" style="margin-left: 10px">
+                                    <div><a class="other_like" href="/author_look/"
+                                            style="color: blue"><span>{{ row.user_name }}&nbsp&nbsp&nbsp</span></a>
+                                        <span style="color: grey">回复了&nbsp&nbsp我</span></div>
+                                    <p class="talkcontent"><a class="other_like"
+                                                              style="color: red;">{{ row.talk_content }}</a>
+                                    </p>
+                                    <div class="spanstyle">
+                                        <span style="color: grey">{{ row.talk_time }}</span>
+                                        <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                        <a id="user_response"><img
+                                                src="../static/image/huifu.png">{{ row.response_count }}条回复</a>
+                                        <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                        <span name={{ row.talk_id }} class="likes"><span
+                                                class="like">&#10084;{{ row.talk_like }}</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endautoescape %}
+
+    </section>
+</div>
+</body>
+</html>

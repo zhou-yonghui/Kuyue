@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/ReadCss.css">
+    <title>Title</title>
+    <script>
+        function func3() {
+            var chapter_id = {{ chapter.chapter_id|safe }}-1
+            document.getElementById("last").href = "/Read/?chapter_id=" + chapter_id + "&book_id={{ chapter.book_id }}";
+        }
+
+        function func4() {
+            var chapter_id = {{ chapter.chapter_id|safe }}+1
+            document.getElementById("next").href = "/Read/?chapter_id=" + chapter_id + "&book_id={{ chapter.book_id }}";
+        }
+
+        function func2() {
+            var content = document.getElementById("content");
+            var content1 = document.getElementById("content1");
+
+            if (content.style.display == "none") {
+                content.style.display = "block";
+                content1.style.display = "none";
+            }
+            else {
+                content.style.display = "none";
+                content1.style.display = "block";
+            }
+        }
+
+
+        function func1() {
+            var set = document.getElementById("set");
+            if (set.style.display == "none") {
+                set.style.display = "block";
+            }
+            else {
+                set.style.display = "none";
+            }
+        }
+
+        function set_background_mise() {
+            document.getElementById("content").style.backgroundColor = "#f8f3e9";
+            document.body.style.backgroundColor = "rgb(237, 231, 218)";
+        }
+
+        function set_background_maihuang() {
+            document.getElementById("content").style.backgroundColor = "rgb(243, 233, 198)";
+            document.body.style.backgroundColor = "rgb(224, 206, 158)";
+        }
+
+        function set_background_yaoqing() {
+            document.getElementById("content").style.backgroundColor = "rgb(226, 238, 226) ";
+            document.body.style.backgroundColor = "rgb(205, 223, 205)";
+        }
+
+        function set_background_hulan() {
+            document.getElementById("content").style.backgroundColor = "rgb(226, 239, 243)";
+            document.body.style.backgroundColor = "rgb(207, 221, 225)";
+        }
+
+        function set_background_danfen() {
+            document.getElementById("content").style.backgroundColor = "rgb(245, 228, 228)";
+            document.body.style.backgroundColor = "rgb(235, 206, 206)";
+        }
+
+        function set_background_wuhui() {
+            document.getElementById("content").style.backgroundColor = "rgb(220, 220, 220)";
+            document.body.style.backgroundColor = "rgb(208, 208, 208)";
+        }
+
+        window.onload = function () {
+            var text = document.getElementById("text");
+            var font_jia = document.getElementById("font_jia");
+            var font_jian = document.getElementById("font_jian");
+            var font_size = document.getElementById("font_size");
+            var size = 20;
+
+            var font_yahei = document.getElementById("font_yahei");
+            var font_songti = document.getElementById("font_songti");
+            var font_kaishu = document.getElementById("font_kaishu");
+            font_jia.onclick = function () {
+                if (size >= 5) {
+                    size += 1;
+                    text.style.fontSize = size + "px";
+                    font_size.innerText = size + "px";
+                }
+            }
+
+            font_jian.onclick = function () {
+                if (size <= 30) {
+                    size -= 1;
+                    text.style.fontSize = size + "px";
+                    font_size.innerText = size + "px";
+                }
+            }
+
+            font_yahei.onclick = function () {
+                text.style.fontFamily = "雅黑";
+            }
+
+            font_songti.onclick = function () {
+                text.style.fontFamily = "宋体";
+            }
+
+            font_kaishu.onclick = function () {
+                text.style.fontFamily = "楷体";
+            }
+
+        }
+
+    </script>
+</head>
+<body>
+<div id="container">
+    <header><span>酷阅小说网</span></header>
+    {% autoescape off %}
+        <div style="display: flex;">
+            <aside>
+                <div style="display:flex;">
+                    <div>
+                        <div class="left" onclick="func2()" style="cursor: pointer;">
+                            <div class="left_img"><img src="../static/image/read1.png"></div>
+                            <span>目录</span>
+                        </div>
+                        <div class="left">
+                            <div class="left_img" onclick="func1()" style="cursor: pointer;"><img
+                                    src="../static/image/read2.png"></div>
+                            <span onclick="func1()" style="cursor: pointer;">设置</span>
+                        </div>
+                        <div class="left">
+                            <a href="/Details/?book_id={{ chapter_list1.book_id }}">
+                                <div class="left_img"><img src="../static/image/read1.png"></div>
+                                <span>书页</span></a>
+                        </div>
+                    </div>
+                    <div id="set" style="display: none">
+                        <div class="color">
+                            <div class="color_mise" onclick="set_background_mise()"></div>
+                            <div class="color_maihuang" onclick="set_background_maihuang()"></div>
+                            <div class="color_yaqing" onclick="set_background_yaoqing()"></div>
+                            <div class="color_hulan" onclick="set_background_hulan()"></div>
+                            <div class="color_danfen" onclick="set_background_danfen()"></div>
+                            <div class="color_wuhui" onclick="set_background_wuhui()"></div>
+                        </div>
+                        <div class="font">
+                            <div id="font_jian">A-</div>
+                            <div id="font_size">20px</div>
+                            <div id="font_jia">A+</div>
+                        </div>
+                        <div class="font1">
+                            <div id="font_yahei">雅黑</div>
+                            <div id="font_songti">宋体</div>
+                            <div id="font_kaishu">楷书</div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <div id="content">
+                <div id="title"><p>{{ chapter.chapter_name }}</p></div>
+                <div id="text_div"><p id="text">{{ chapter.chapter_content }}</p></div>
+                <div style="display: flex;text-align: center;margin-top: 50px">
+                    <div style="margin: 0 auto;font-size: 20px"><a id="last" href="" onclick="func3()">上一章</a></div>
+                    <div style="margin: 0 auto;font-size: 20px"><a id="next" href="" onclick="func4()">下一章</a></div>
+                </div>
+            </div>
+            <div id="content1" style="display: none;position: absolute;z-index: -1">
+                <ul style="position: relative;float: left">
+                    {% for row in chapter_list %}
+                        <div class="chapter_name">
+                            <a id="chapter_a" href="/Read/?chapter_id={{ row.chapter_id }}&book_id={{ row.book_id }}">
+                                <li>{{ row.chapter_name }}</li>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endautoescape %}
+
+</div>
+</body>
+</html>

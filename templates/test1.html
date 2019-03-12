@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/js/kindeditor/themes/default/default.css"/>
+    <link rel="stylesheet" href="../static/js/kindeditor/themes/simple/simple.css"/>
+    <script charset="utf-8" src="../static/js/kindeditor/kindeditor-all.js"></script>
+    <script charset="utf-8" src="../static/js/kindeditor/lang/zh-CN.js"></script>
+    <script src="../static/jquery.min.js"></script>
+    <script>
+        KindEditor.ready(function (K) {
+            window.editor = K.create('#editor_id', {
+                width: '800px',
+                height: '500',
+                resizeType: '0',
+                newlineTag: "br",
+            });
+        });
+
+        $(document).ready(function () {
+            $("#butt").click(function () {
+                html = editor.html();
+                alert(html);
+                $.ajax({
+                    type: 'POST',
+                    url: "/test1/",
+                    data: {html: html},
+                    dataType: "JSON",
+                    success: function (data) {
+                        alert(data["host"]);
+                    }
+
+                })
+            });
+        });
+    </script>
+</head>
+<body>
+<textarea id="editor_id" name="content">
+&lt;strong&gt;HTML内容&lt;/strong&gt;
+</textarea>
+<div id="result">1</div>
+<button id="butt" style="height: 50px;width: 50px" onclick="func1()"></button>
+</body>
+</html>

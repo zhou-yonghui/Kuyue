@@ -1,0 +1,140 @@
+body {
+    font-size: 14px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.container {
+    width: 1200px;
+    background: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#content {
+    margin-left: 50px;
+    margin-bottom: 30px;
+}
+
+#content h1 {
+    font-size: 30px;
+}
+
+#UserName {
+    margin-left: 20px;
+    margin-top: 13px;
+}
+
+#UserTime {
+    color: grey;
+    margin-left: 20px;
+}
+
+#Text {
+    width: 800px;
+    line-height: 40px;
+}
+
+#DianZan {
+    margin-left: 350px;
+}
+
+footer ul li {
+    list-style: none;
+}
+
+.UserName1 {
+    margin-left: 20px;
+    margin-top: 13px;
+}
+
+.UserTime1 {
+    color: grey;
+    margin-left: 20px;
+}
+
+.RText {
+    margin-left: 65px;
+}
+
+#butt {
+    height: 30px;
+    width: 70px;
+    margin-top: 10px;
+    margin-left: 600px;
+    margin-bottom: 50px;
+    background-color: orangered;
+}
+
+#butt1 {
+    height: 30px;
+    width: 70px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    background-color: orangered;
+}
+
+#username {
+    margin-left: 15px;
+}
+
+.response_a:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.book_name a {
+    text-decoration: none;
+}
+
+.book_name a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+.book_name a:hover {
+    color: red;
+    text-decoration: none;
+}
+
+.like {
+    font-size: 20px;
+    /*color: #ccc;*/
+    cursor: pointer;
+}
+
+.cs {
+    color: red;
+    cursor: pointer
+}
+
+.likes {
+    color: grey;
+    cursor: pointer
+}
+
+.likes :hover {
+    color: red;
+    cursor: pointer;
+}
+
+#disappare {
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+    font-size: 20px;
+    width: 300px;
+    height: 60px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: -125px 0 0 -150px;
+    text-align: center;
+}
+
+#disappare p {
+    padding: 5px;
+    font-size: 16px;
+    color: red;
+    text-align: center;
+}

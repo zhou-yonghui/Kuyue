@@ -1,0 +1,476 @@
+body {
+    font-size: 14px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.container {
+    width: 1200px;
+    background: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container #content #left {
+    margin-left: 20px;
+}
+
+.container #content {
+    display: flex;
+}
+
+.container #content #middle {
+    margin-left: 30px;
+    margin-top: 20px;
+    width: 670px;
+}
+
+.NovelType {
+    border: 1px solid darkred;
+    height: 30px;
+    width: 70px;
+    border-radius: 25px;
+    margin-left: 10px;
+}
+
+.NovelType div {
+    line-height: 30px;
+    text-align: center;
+}
+
+#button_1 {
+    margin-top: 20px;
+    line-height: 5px;
+    border: 1px solid darkred;
+    background-color: darkred;
+    width: 70px;
+}
+
+#button_2 {
+    margin-left: 30px;
+    margin-top: 20px;
+    line-height: 30px;
+    border: 1px solid darkred;
+    background-color: white;
+    width: 70px;
+}
+
+#button_3 {
+    margin-left: 30px;
+    margin-top: 20px;
+    line-height: 30px;
+    border: 1px solid darkred;
+    background-color: white;
+    width: 70px;
+}
+
+#read {
+    text-align: center;
+    color: white;
+    text-decoration: none;
+}
+
+#insert {
+    line-height: 30px;
+    text-align: center;
+}
+
+#button_3 div {
+    line-height: 30px;
+    text-align: center;
+}
+
+#content1 {
+    display: flex;
+}
+
+#left1 {
+    margin-left: 45px;
+    margin-top: 18px;
+    display: flex;
+}
+
+.button2 {
+    width: 160px;
+}
+
+.button2 span {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#introduce {
+    margin-left: 40px;
+    width: 700px;
+}
+
+#AuthorName {
+    width: 160px;
+}
+
+#AuthorName div {
+    margin-left: 30px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#content2 {
+    display: flex;
+}
+
+#AuthorInfo {
+    margin-top: 20px;
+    width: 220px;
+}
+
+#left2 {
+    margin-left: 45px;
+}
+
+.like span {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#LikeImg {
+    margin-left: 80px;
+    margin-top: 20px;
+    display: flex;
+}
+
+#LikeImg div {
+    width: 200px;
+}
+
+#LikeImg div span {
+    font-size: 18px;
+    display: block;
+}
+
+#Others {
+    margin-left: 40px;
+    margin-top: 30px;
+}
+
+#Others span {
+    font-size: 18px;
+}
+
+footer {
+    display: flex;
+}
+
+#talk {
+    width: 800px;
+    margin-left: 45px;
+}
+
+#TalkTitle a {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#talk ul li {
+    /*height: 20px;*/
+    /*list-style-image: url("../image/sc5.png");*/
+    font-size: 14px;
+    list-style: none;
+    color: red;
+    /*text-decoration: none;*/
+    /*background-image: url(../image/lineH_1.gif);*/
+    /*background-position: 50% bottom;*/
+    /*background-repeat: repeat-x;*/
+}
+
+#username {
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+#username .talkcontent {
+    color: black;
+}
+
+#user_response {
+    color: grey;
+    text-decoration: none;
+}
+
+#user_response:hover {
+    color: red;
+}
+
+#RecommendTitle {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#Recommend {
+    width: 250px;
+    height: 500px;
+    margin-left: 50px;
+    margin-top: 5px;
+    background-color: azure;
+}
+
+#Recommend ul li {
+    height: 50px;
+    font-size: 14px;
+    list-style: none;
+    text-decoration: none;
+    background-image: url(../image/lineH_1.gif);
+    background-position: 50% bottom;
+    background-repeat: repeat-x;
+}
+
+#catalog:visited {
+    color: black;
+}
+
+#catalog:hover {
+    color: red;
+}
+
+#detail:visited {
+    color: black;
+}
+
+#detail:hover {
+    color: red;
+}
+
+.button2 a {
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.button2 a {
+    color: black;
+}
+
+.button2 a:visited {
+    color: black;
+}
+
+.button2 a:hover {
+    color: red;
+}
+
+#TalkTitle a {
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+}
+
+#TalkTitle a:hover {
+    color: red;
+}
+
+.talkcontent a {
+    text-decoration: none;
+}
+
+#Bottom_content_1 {
+    margin-left: 45px;
+    margin-top: 18px;
+}
+
+.button2 a {
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.chapter_name {
+    width: 350px;
+    position: relative;
+    float: left;
+    height: 50px;
+}
+
+.chapter_name li {
+    list-style: none;
+    background-image: url(../image/lineH_1.gif);
+    background-position: 50% bottom;
+    background-repeat: repeat-x;
+}
+
+#chapter_a {
+    text-decoration: none;
+    color: black;
+}
+
+#chapter_a:visited {
+    color: black;
+}
+
+#chapter_a:hover {
+    color: red;
+}
+
+.other_like {
+    text-decoration: none;
+    color: black;
+}
+
+.other_like:visited {
+    color: black;
+}
+
+.other_like:hover {
+    color: red;
+}
+
+.taolunqu:visited {
+    color: black;
+}
+
+.taolunqu {
+    text-decoration: none;
+}
+
+.taolunqu:hover {
+    color: red;
+}
+
+.likes {
+    color: grey;
+    cursor: pointer
+}
+
+.likes :hover {
+    color: red;
+    cursor: pointer;
+}
+
+.like {
+    font-size: 20px;
+    /*color: #ccc;*/
+    cursor: pointer;
+}
+
+.cleanfloat::after {
+    display: block;
+    clear: both;
+    content: "";
+    visibility: hidden;
+    height: 0;
+}
+
+.cleanfloat {
+    color: #ccc;
+}
+
+.cleanfloat li {
+    list-style: none;
+    float: left;
+    font-size: 30px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.hs, .cs {
+    color: #f00;
+}
+
+#baocun {
+    background-color: darkred;
+    color: white;
+    height: 20px;
+    width: 40px;
+    text-align: center;
+    margin-top: 32px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#tip {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /*display: none;*/
+    z-index: 9999;
+}
+
+#disappare {
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+    font-size: 20px;
+    width: 300px;
+    height: 60px;
+    position: absolute;
+    z-index: 9999;
+    top: 50%;
+    left: 50%;
+    margin: -125px 0 0 -150px;
+    text-align: center;
+}
+
+#disappare p {
+    padding: 5px;
+    font-size: 16px;
+    color: red;
+    text-align: center;
+}
+
+#votetip {
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+    font-size: 20px;
+    width: 500px;
+    height: 250px;
+    position: absolute;
+    top: 50%;
+    left: 44%;
+    margin: -125px 0 0 -150px;
+    text-align: center;
+}
+
+#votetip p {
+    padding: 5px;
+    font-size: 16px;
+    color: red;
+    text-align: center;
+}
+
+#votetip ul li {
+    width: 130px;
+    height: 70px;
+    line-height: 70px;
+    list-style: none;
+    text-align: center;
+    border: 1px solid #e6e6e6;
+    margin: 5px;
+    cursor: pointer;
+
+}
+
+#queren {
+    width: 130px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #e6e6e6;
+    margin-top: 30px;
+    margin-left: 90px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+
+#quxiao {
+    width: 130px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #e6e6e6;
+    margin-top: 30px;
+    margin-left: 90px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}

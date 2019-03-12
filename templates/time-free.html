@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/static/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="/static/css/free.css">
+    <script src="/static/js/free.js" type="application/javascript"></script>
+    <script src="../static/jquery.min.js"></script>
+    <title>限时免费</title>
+
+    <script>
+        $(function () {
+            $(".insert").click(function () {
+                var book_id=$(this).attr('id');
+                $.ajax({
+                    type: 'POST',
+                    url: "/shujia/",
+                    data: {book_id: book_id},
+                    dataType: "JSON",
+                    success: function (data) {
+                        if (data['title']) {
+                            $("#disappare").html("");
+                            var show = '';
+                            show += '<p>' + data['title'] + '</p>';
+                            $("#disappare").html(show);
+                            $("#disappare").show().delay(3000).hide(300);
+                        }
+                        else {
+                            $("#"+book_id).html("已收藏")
+                        }
+                    }
+                })
+            })
+        });
+    </script>
+</head>
+<body>
+<div id="panel">
+    <div>
+        <iframe class="if " src="/Header/" width="1200px" frameborder="0" height="123.5px"></iframe>
+    </div>
+
+
+    <div id="disappare" style="display: none;">
+        <p>请先登录！！！</p>
+    </div>
+    <br/>
+    <div class=" free-warp" style="margin-left: 20px">
+        <div class="free-content" id="nav">
+            <ul class=" free-tag-u">
+                <li class="rt1">
+                    <a class="aa1" href="">限时免费</a>
+                </li>
+                <li><a id="ryt" href="/freeAll/">免费作品</a></li>
+            </ul>
+            <div class="her">
+            </div>
+        </div>
+        <div class="free-list">
+            <ul class="all-img-list-cf">
+                {% for row in Contacts %}
+                    <li>
+                        <div class="rt">
+                            <div class="book-img-box">
+                                <a href="/Details/?book_id={{ row.book_id }}"><img class="img1"
+                                                                                   src="{{ row.book_image }}"/> </a>
+                            </div>
+                            <div class="book-mid-info">
+                                <h4><a href="/Details/?book_id={{ row.book_id }}">{{ row.book_name }}</a></h4>
+                                <p class="authors">
+                                    <img style="width:14px;height:14px" src="/static/image/author_z.png">
+                                    <a class="name"
+                                       href="/author_look/?user_id={{ row.user_id }}">{{ row.user_name }}</a>
+                                    <span>|</span>
+                                    <a>仙侠</a>
+                                    <span>|</span>
+                                    <span>连载中</span>
+                                </p>
+                                <p class="intro">
+                                    {{ row.book_introduction }}
+                                </p>
+                                <p class="update">
+                                    <a>点击次数：{{ row.book_clickcount }}次</a>
+                                    <span>|</span>
+                                    <span>评分：{{ row.book_estimate }}分</span>
+                                </p>
+                            </div>
+                            <div class="book-right-info">
+                                <div class="price">
+                                    <p><span>¥</span>0</p>
+                                    <s>¥{{ row.book_price }}</s>
+                                </div>
+                                <p class="btn">
+                                    <a class="red-a">免费阅读</a>
+                                    <a class="insert" id={{ row.book_id }}>{{ row.shujia }}</a>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

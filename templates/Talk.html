@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>酷阅小说网</title>
+    <link rel="stylesheet" href="../static/css/TalkCss.css">
+    <script src="../static/jquery.min.js"></script>
+    <script charset="utf-8" src="../static/js/kindeditor/kindeditor-all.js"></script>
+    <script charset="utf-8" src="../static/js/kindeditor/lang/zh-CN.js"></script>
+    <script>
+        KindEditor.ready(function (K) {
+            window.editor = K.create('#editor_id', {
+                width: '750',
+                height: '180',
+                resizeType: '0',
+                newlineTag: "br",
+                uploadJson: "/kuyue/img/",
+                items: ["emoticons"],
+            });
+        });
+
+        $(function () {
+            $("body").on('click', '.likes', function () {
+                if ($(this).css('color') == "rgb(128, 128, 128)") {
+                    $(this).css('color', 'red');
+                    talk_id = $(this).attr('name');
+                    $.ajax({
+                        type: 'POST',
+                        url: "/Likes1/",
+                        data: {talk_id: talk_id},
+                        dataType: "JSON",
+                        success: function (data) {
+                            if (data['title']) {
+                                $("#disappare").show().delay(3000).hide(300);
+                            }
+                            else {
+                                $("*[name=" + talk_id + "]").html("");
+                                var show1 = '';
+                                show1 += '<span class="like" style="color: red">&#10084;' + data['talk_like'] + '</span>';
+                                $("*[name=" + talk_id + "]").html(show1);
+                                talk_id = ""
+                            }
+                        }
+                    })
+                }
+                else {
+                    $(this).css('color', 'grey');
+                    talk_id = $(this).attr('name');
+                    $.ajax({
+                        type: 'POST',
+                        url: "/Likes2/",
+                        data: {talk_id: talk_id},
+                        dataType: "JSON",
+                        success: function (data) {
+                            if (data['title']) {
+                                $("#disappare").show().delay(3000).hide(300);
+                            }
+                            else {
+                                $("*[name=" + talk_id + "]").html("");
+                                var show1 = '';
+                                show1 += '<span class="like">&#10084;' + data['talk_like'] + '</span>';
+                                $("*[name=" + talk_id + "]").html(show1);
+                                talk_id = ""
+                            }
+                        }
+                    })
+                }
+            })
+        });
+
+
+        function fun1() {
+            var edit = document.getElementById("edit");
+            edit.style.display = "block";
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+        function fun2() {
+            var edit = document.getElementById("edit");
+            edit.style.display = "none";
+        }
+
+        var book_id = '';
+        $(function () {
+            $("#butt").click(function () {
+                html = editor.html();
+                $.ajax({
+                    type: 'POST',
+                    url: "/Talk/",
+                    data: {html: html, book_id: book_id},
+                    dataType: "JSON",
+                    success: function (data) {
+                        if (data['title']) {
+                            $("#disappare").show().delay(3000).hide(300);
+                        }
+                        else {
+                            var show1 = ''
+                            show1 += '<span>全部 (' + data['len_talk_list'] + ')</span>'
+                            $("#AllTalks").html(show1);
+                            var show = '';
+                            $("#xunhuan").html("")
+                            $.each(data["data"], function (i, n) {
+                                show += '<li><img src="../static/image/line.png" width="750px">';
+                                show += '<div style="display: flex">';
+                                show += '<div id="userimg"><a href="/author_look/"><img width="43" height="46" src=' + n.user_image + '></a></div>';
+                                show += '<div id="username">';
+                                show += '<div><a class="other_like" href="/author_look/" style="color: blue"><span>' + n.user_name + '&nbsp&nbsp&nbsp</span></a><span style="color: grey">发表了评论</span></div>';
+                                show += '<p class="talkcontent"><a class="other_like"  style="color: red;">' + n.talk_content + '</a></p>';
+                                show += '<div class="spanstyle">';
+                                show += '<span style="color: grey">' + n.talk_time + '</span>';
+                                show += '<span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span><a href="/TalkDetails/?talk_id=' + n.talk_id + '"' + 'class="response_a" onclick="fun1()" id=' + n.talk_id + '><img src="../static/image/huifu.png">' + n.response_count + '条回复</a><span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span><span class="likes" name=' + n.talk_id + '><span class="like">&#10084;' + n.talk_like + '</span></span>';
+                                show += '</div>';
+                                show += '</div>';
+                                show += '</div>';
+                                show += '</li>';
+                            });
+                            $("#xunhuan").html(show);
+                            editor.html("");
+                            $("#edit").attr("style", "display:none;");
+                            talk_id = '';
+                            book_id = '';
+                        }
+                    }
+                })
+            });
+            $(".Write").click(function () {
+                book_id = $(this).attr('id');
+            })
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <header>
+        <iframe src="/Header/" width="1200px" FrameBorder="0" height="135px"></iframe>
+    </header>
+
+    <div id="disappare" style="display: none;">
+        <p>请先登录！！！</p>
+    </div>
+
+    {% autoescape off %}
+        <div style="display:flex;">
+            <section id="content">
+                <div id="TalkTitle">
+                <span>作品讨论区《
+                    <a id="book_name" href="/Details/?book_id={{ novels_list.book_id }}">{{ novels_list.book_name }}</a>
+                    》</span>
+                </div>
+
+                <div id="Button">
+                    <div id="AllTalks">
+                        <span>全部 ({{ len_talk_list }})</span>
+                    </div>
+                    <div class="Write" onclick="fun1()" id={{ novels_list.book_id }}>
+                        <img src="../static/image/u15.png"><span>我要评论</span>
+                    </div>
+                </div>
+
+                <div id="talk" style="margin-bottom: 150px">
+                    <ul>
+                        <div id="xunhuan" style="margin-bottom: 40px">
+                            {% for row in talk_list %}
+                                <li>
+                                    <img src="../static/image/line.png" width="750px">
+                                    <div style="display: flex">
+                                        <div id="userimg"><a href="/author_look/"><img width="43" height="46"
+                                                                                       src={{ row.user_image }}></a>
+                                        </div>
+                                        <div id="username">
+                                            <div><a class="other_like" href="/author_look/"
+                                                    style="color: blue"><span>{{ row.user_name }}&nbsp&nbsp&nbsp</span></a><span
+                                                    style="color: grey">发表了评论</span></div>
+                                            <p class="talkcontent"><a class="other_like"
+                                                                      href="/TalkDetails/?talk_id={{ row.talk_id }}"
+                                                                      style="color: red;">{{ row.talk_content }}</a>
+                                            </p>
+                                            <div class="spanstyle">
+                                                <span style="color: grey">{{ row.talk_time }}</span>
+                                                <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                                <a class="response_a"
+                                                   href="/TalkDetails/?talk_id={{ row.talk_id }}"><img
+                                                        src="../static/image/huifu.png">{{ row.response_count }}条回复</a>
+                                                <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                                <span name={{ row.talk_id }} class="likes"><span
+                                                        class="like">&#10084;{{ row.talk_like }}</span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </div>
+                    </ul>
+                    <div id="edit" style="display: none;margin-left: 50px">
+                        <textarea id="editor_id" name="content"></textarea>
+                        <button id="butt1" onclick="fun2()">取消</button>
+                        <button id="butt">发表</button>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="content1">
+                <div style="margin-top: 100px;text-align: center">
+                    <a  href="/Details/?book_id={{ novels_list.book_id }}"><div>
+                        <img src="../static/image/180.jpg">
+                    </div>
+                    <div id="Name">
+                        <span>{{ novels_list.book_name }}</span>
+                    </div></a>
+{#                    <div id="InsertBook">#}
+{#                        <span>加入书架</span>#}
+{#                    </div>#}
+                    <div id="Author">
+                        <span>作者</span>
+                    </div>
+                    <a href="/author_look/?user_id={{ user_list.user_id }}">
+                    <div>
+                        <img width="148" height="137" src={{ user_list.user_image }}>
+                    </div>
+                    <div id="AuthorName">
+                        <span>{{ user_list.user_name }}</span>
+                    </div></a>
+                </div>
+
+            </section>
+        </div>
+    {% endautoescape %}
+</div>
+</body>
+</html>

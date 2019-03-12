@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/shoplog.css">
+    <script type="text/javascript" src="/static/jquery-3.3.1.min.js"></script>
+    <script src="../static/js/free.js" type="application/javascript"></script>
+        <style type="text/css">
+        #content {
+            display:none;
+            width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        table tr{
+            padding-top:20px;
+            padding-bottom: 20px;
+        }
+        table td,th{
+            text-align:center;
+        }
+        .imgs{
+            margin-left:auto;
+            margin-right:auto;
+
+
+        }
+        .imgs span{
+            display:none;
+            color: #6050fc;
+            overflow:hidden;
+            -webkit-line-clamp:2;
+            overflow:hidden;
+            text-overflow:ellipsis;
+
+
+            width:150px;
+            height:150px;
+        }
+        .imgs:hover span{
+            display:-webkit-box;
+            -webkit-box-orient:vertical;
+            display:block;
+        }
+        #title{
+            font-size:25px;
+            font-weight:bolder;
+        }
+
+    </style>
+    <title>交易记录</title>
+</head>
+<body>
+<div id="panel">
+    <div>
+        <iframe class="if " src="/Header/" width="1200px" frameborder="0" height="123.5px"></iframe>
+    </div>
+    <div style="margin-left: 20px"><p><a class="paa1" href="/self/">首页</a>><a class="paa2" href="">读者记录</a></p></div>
+
+    <div class="content" style="margin-left: 20px">
+        <h1>读者记录</h1>
+        <p class="warn">消费记录可能存在延迟，仅供参考，请以实际金额参考</p>
+        <div class="item">
+            <ul class="rty">
+                <li style="margin-left:0px;" id="shop1" class="current">消费记录</li>
+                <li id="shop2">观看记录</li>
+            </ul>
+        </div>
+        <div id="tab-content">
+            <div id="content" class="shopping">
+                <table>
+                    <colgroup>
+                         <col width=300px align="left">
+                        <col width=300px align="left">
+                        <col width=300px align="left">
+                        <col width=300px align="left">
+                    </colgroup>
+                    <tr>
+                        <th>小说名称</th>
+                        <th>消费时间</th>
+                        <th>消费金额</th>
+                        <th>删除记录</th>
+                    </tr>
+                    {% for row in result %}
+                    <tr>
+                        <td>
+                            <div class="imgs" style="background:url({{ row.book_image }});width:150px;height:200px;">
+                                <span style="overflow: hidden;text-overflow:ellipsis">{{ row.book_introduction }}</span>
+                            </div>
+                            <span id="title">{{ row.book_name }}</span></td>
+                        <td>{{ row.buy_time }}</td>
+                        <td>{{ row.book_price }}</td>
+                    <td><a href="/del_buy/?id={{ row.buy_id }}">删除</a></td>
+                    </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+
+
+            <div id="content" class="read">
+                <table>
+                    <colgroup>
+                        <col width=300px align="left">
+                        <col width=300px align="left">
+                        <col width=300px align="left">
+                        <col width=300px align="left">
+                    </colgroup>
+                    <tr>
+                        <th>小说名称</th>
+                        <th>上次观看时间</th>
+                        <th>上次观看章节</th>
+                        <th>删除记录</th>
+                    </tr>
+                    {% for alist in alist %}
+                    <tr>
+                        <td>
+                            <div class="imgs" style="background:url({{ alist.book_image }});width:150px;height:200px;">
+                                <span>{{ alist.book_introduction }}</span>
+                            </div>
+                            <span id="title">{{ alist.book_name }}</span></td>
+                        <td>{{ alist.read_time }}</td>
+                        <td>{{ alist.chapter_name }}</td>
+                    <td><a href="/del_read/?id={{ alist.book_id }}">删除</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

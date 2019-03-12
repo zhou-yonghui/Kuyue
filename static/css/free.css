@@ -1,0 +1,184 @@
+#panel {
+    margin-bottom: 0px;
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.if {
+    margin-bottom: 0px;
+}
+
+.free-content {
+    width: 1200px;
+    display: flex;
+    padding-top: 0px;
+}
+
+.free-content a {
+    width: 130px;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    float: left;
+    line-height: 40px;
+    text-align: center;
+    color: #a6a6a6;
+    border-bottom: 1px solid #a6a6a6;
+    text-decoration: none;
+}
+
+.free-tag-u {
+    padding-left: 0px;
+    padding-bottom: 0px;
+}
+
+.free-tag-u li {
+    float: left;
+    list-style: none;
+    padding: 0px;
+}
+
+.her {
+    height: 41px;
+    width: 938px;
+    border-bottom: 1px solid #a6a6a6;
+    margin-top: 15px;
+}
+
+.rt1 a {
+    color: red;
+    border-bottom: none;
+    border-top: 2px solid #ed4259;
+    border-left: 1px solid #a6a6a6;
+    border-right: 1px solid #a6a6a6;
+}
+
+.free-list {
+    display: flex;
+}
+
+h4 a {
+    margin: 0px;
+    text-decoration: none;
+}
+
+.free-list ul {
+    padding-left: 0px;
+}
+
+.free-list ul li {
+    list-style: none;
+    display: block;
+    margin-left: 0px;
+}
+
+.all-img-list-cf {
+    width: 1200px;
+}
+
+.all-img-list-cf li {
+    margin-bottom: 33px;
+}
+
+.rt {
+    display: flex;
+    width: 1200px;
+    height: 235px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.book-img-box {
+    height: 200px;
+}
+
+.book-mid-info {
+    height: 200px;
+    width: 600px;
+}
+
+.img1 {
+    margin-right: 20px;
+}
+
+.intro {
+    width: 542px;
+}
+
+.book-right-info {
+    margin-left: 200px;
+    height: 200px;
+    position: relative;
+    margin-top: 5px;
+}
+
+s {
+
+}
+
+.btn {
+    /*margin-top: 30px;*/
+    width: 300px;
+    height: 34px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.price {
+    margin-top: 70px;
+
+}
+
+.btn a {
+
+    display: block;
+    width: 100px;
+    height: 34px;
+    text-align: center;
+    padding-top: auto;
+    padding-bottom: auto;
+}
+
+.red-a {
+    background: red;
+    color: white;
+    border: 1px solid red;
+}
+
+.insert {
+    cursor: pointer;
+    margin-top: 5px;
+    background: white;
+    color: black;
+    border: 1px solid blue;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+
+}
+
+#disappare {
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+    font-size: 20px;
+    width: 300px;
+    height: 60px;
+    position: absolute;
+    z-index: 9999;
+    top: 50%;
+    left: 50%;
+    margin: -125px 0 0 -150px;
+    text-align: center;
+}
+
+#disappare p {
+    padding: 5px;
+    font-size: 16px;
+    color: red;
+    text-align: center;
+}
+
+

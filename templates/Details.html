@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>酷阅小说网</title>
+    <link rel="stylesheet" href="../static/css/DetailsCss.css">
+    <script src="../static/jquery.min.js"></script>
+    <script src="http://www.jq22.com/jquery/1.6.4/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.reveal.js"></script>
+    <script>
+        function catalog() {
+            document.getElementById("Bottom_content").style.display = "none";
+            document.getElementById("Bottom_content_1").style.display = "block";
+        }
+
+        function details() {
+            document.getElementById("Bottom_content_1").style.display = "none";
+            document.getElementById("Bottom_content").style.display = "block";
+        }
+
+        function button_color() {
+            document.getElementById("button_1").style.backgroundColor = "white";
+            document.getElementById("read").style.color = "black";
+            document.getElementById("button_2").style.backgroundColor = "darkred";
+            document.getElementById("insert").style.color = "white";
+            document.getElementById("button_3").style.backgroundColor = "white";
+            document.getElementById("vote").style.color = "black";
+        }
+
+        function button_color_1() {
+            document.getElementById("button_1").style.backgroundColor = "white";
+            document.getElementById("read").style.color = "black";
+            document.getElementById("button_2").style.backgroundColor = "white";
+            document.getElementById("insert").style.color = "black";
+            document.getElementById("button_3").style.backgroundColor = "darkred";
+            document.getElementById("vote").style.color = "white";
+        }
+
+        function button_color_2() {
+            document.getElementById("button_1").style.backgroundColor = "darkred";
+            document.getElementById("read").style.color = "white";
+            document.getElementById("button_2").style.backgroundColor = "white";
+            document.getElementById("insert").style.color = "black";
+            document.getElementById("button_3").style.backgroundColor = "white";
+            document.getElementById("vote").style.color = "black";
+        }
+
+        var book_id ={{ novels_list.book_id }};
+        var index = '';
+        var votecount = '';
+
+        $(function () {
+            $("#quxiao").click(function () {
+                $("#votetip").css("display", "none")
+            })
+        });
+
+        $(function () {
+            $("#vote").click(function () {
+                $("#votetip").css("display", "block")
+            })
+        });
+
+        $(function () {
+            $("#votenumber li").click(function () {
+                votecount = $(this).text();
+                $(this).css("border", "1px solid red");
+                $(this).siblings().css("border", "1px solid #e6e6e6");
+                $("#queren").click(function () {
+                    $.ajax({
+                        type: 'POST',
+                        url: "/toupiao/",
+                        data: {votecount: votecount, book_id: book_id},
+                        dataType: "JSON",
+                        success: function (data) {
+                            $("#disappare").html("");
+                            var show = '';
+                            show += '<p>' + data['title'] + '</p>';
+                            $("#disappare").html(show);
+                            $("#disappare").show().delay(3000).hide(300);
+                            if (data['book_ticketcount']) {
+                                $("#ticketcount").html("");
+                                var show1=""
+                                show1+='<span id="ticketcount">'+data['book_ticketcount']+'<span style="font-size: 14px;font-weight: normal">&nbsp推荐票</span>&nbsp&nbsp&nbsp&nbsp</span>'
+                                $("#ticketcount").html(show1)
+                            }
+                        }
+                    })
+                });
+            })
+        });
+
+
+        $(function () {
+            $(".cleanfloat li").hover(function () {
+                $(this).addClass('hs');
+                $(this).prevAll().addClass('hs');
+            }, function () {
+                $(this).removeClass('hs');
+                $(this).prevAll().removeClass('hs');
+            })
+
+            $(".cleanfloat li").click(function () {
+                index = $(this).index();
+                $(this).addClass('cs');
+                $(this).prevAll().addClass('cs');
+                $(this).nextAll().removeClass('cs');
+            })
+        })
+        $(function () {
+            $("#insert").click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: "/shujia/",
+                    data: {book_id: book_id},
+                    dataType: "JSON",
+                    success: function (data) {
+                        if (data['title']) {
+                            $("#disappare").html("");
+                            var show = '';
+                            show += '<p>' + data['title'] + '</p>';
+                            $("#disappare").html(show);
+                            $("#disappare").show().delay(3000).hide(300);
+                        }
+                        else {
+                            $("#insert").html("已收藏")
+                        }
+                    }
+                })
+            })
+        });
+
+        $(function () {
+            $("#baocun").click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: "/pingfen/",
+                    data: {index: index, book_id: book_id},
+                    dataType: "JSON",
+                    success: function (data) {
+                        $("#disappare").html("");
+                        var show = '';
+                        show += '<p>' + data['title'] + '</p>';
+                        $("#disappare").html(show);
+                        $("#disappare").show().delay(3000).hide(300);
+                        if (data['book_estimatecount']) {
+                            $("#estimatecount").html("");
+                            var show1 = '';
+                            show1 += data['book_estimatecount'] + '人评价'
+                            $("#estimatecount").html(show1)
+                            $("#estimate").text("");
+                            $("#estimate").text(data['book_estimate']);
+                        }
+                    }
+                })
+            })
+        });
+
+
+        $(function () {
+            $("body").on('click', '.likes', function () {
+                if ($(this).css('color') == "rgb(128, 128, 128)") {
+                    $(this).css('color', 'red');
+                    talk_id = $(this).attr('name');
+                    $.ajax({
+                        type: 'POST',
+                        url: "/Likes1/",
+                        data: {talk_id: talk_id},
+                        dataType: "JSON",
+                        success: function (data) {
+                            if (data['title']) {
+                                $("#disappare").show().delay(3000).hide(300);
+                            }
+                            else {
+                                $("*[name=" + talk_id + "]").html("");
+                                var show1 = '';
+                                show1 += '<span class="like" style="color: red">&#10084;' + data['talk_like'] + '</span>';
+                                $("*[name=" + talk_id + "]").html(show1);
+                                talk_id = ""
+                            }
+                        }
+                    })
+                }
+                else {
+                    $(this).css('color', 'grey');
+                    talk_id = $(this).attr('name');
+                    $.ajax({
+                        type: 'POST',
+                        url: "/Likes2/",
+                        data: {talk_id: talk_id},
+                        dataType: "JSON",
+                        success: function (data) {
+                            if (data['title']) {
+                                $("#disappare").show().delay(3000).hide(300);
+                            }
+                            else {
+                                $("*[name=" + talk_id + "]").html("");
+                                var show1 = '';
+                                show1 += '<span class="like">&#10084;' + data['talk_like'] + '</span>';
+                                $("*[name=" + talk_id + "]").html(show1);
+                                talk_id = ""
+                            }
+                        }
+                    })
+                }
+            })
+        })
+
+
+    </script>
+     <style type="text/css">
+        .reveal-modal-bg {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            z-index: 100;
+            display: none;
+            top: 0;
+            left: 0;
+            background: rgba(00, 00, 00, 0.8)
+        }
+
+        .reveal-modal {
+            visibility: hidden;
+            top: 100px;
+            left: 50%;
+            margin-left: -300px;
+            margin-bottom: 400px;
+            width: 520px;
+            position: fixed;
+            height: 300px;
+            z-index: 101;
+            padding: 30px 40px 34px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            -moz-box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+            -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+            -box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+            background-color: #FFF;
+
+        }
+
+        .reveal-modal.small {
+            width: 200px;
+            margin-left: -140px;
+        }
+
+        .reveal-modal.medium {
+            width: 400px;
+            margin-left: -240px;
+        }
+
+        .reveal-modal.large {
+            width: 600px;
+            margin-left: -340px;
+        }
+
+        .reveal-modal.xlarge {
+            width: 800px;
+            height: 400px;
+            margin-left: -440px;
+        }
+
+        .reveal-modal .close-reveal-modal {
+            font-size: 22px;
+            line-height: 0.5;
+            position: fixed;
+            left: 300px;
+            top: 300px;
+            right: 11px;
+            color: #333;
+            text-shadow: 0 -1px 1px rgba(0, 0, 0, .6);
+            font-weight: bold;
+            cursor: pointer;
+
+        }
+        #mytable td{
+            padding-top:20px;
+            padding-bottom: 20px;
+        }
+        table{
+            border-bottom: 2px solid lawngreen;
+        }
+        #sub{
+            text-decoration: none;
+            display:block;
+            width:60px;
+            height:30px;
+            float:right;
+            color:white;
+            text-align: center;
+            background:orangered;
+            border-radius: 3px 3px 3px 3px;
+            line-height:30px;
+            margin-top:20px;
+        }
+        .tr1 th{
+            font-size:25px;
+        }
+        #jianjie{
+            font-size:20px;
+            font-weight:bold;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <iframe src="/Header/" width="1200px" FrameBorder="0" height="135px"></iframe>
+    </header>
+
+
+<div id="myModal" class="reveal-modal">
+        <h2 style="margin-top:0px; color:orangered">购买详情</h2>
+        <hr>
+        <div>
+            <table id="mytable">
+                <colgroup>
+                    <col width=200px >
+                    <col width=100px >
+                    <col width=200px >
+                    <col width="100px" >
+                    <col width="100px" >
+                </colgroup>
+                <thead>
+                <tr class="tr1">
+                    <th style="text-align: left">小说名称</th>
+                    <th>类别</th>
+                    <th>作者</th>
+                    <th>价格</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td style="padding-left:10px;">
+                        {{ bookmag.book_name }}
+                    </td>
+                    <td style="text-align: center">
+                        {{ bookmag.kind_name }}
+                    </td >
+                    <td style="text-align: center">
+                        {{ bookmag.user_name }}
+                    </td>
+                    <td style="text-align: center;color:orangered">
+                      ¥{{ bookmag.book_price }}
+                    </td>
+                </tr>
+            </table>
+            <div>
+                <a id="sub" href="/buy/?book_id={{ bookmag.book_id }}">提交订单</a>
+            </div>
+
+            <div>
+                <p id="jianjie">小说简介：</p>
+                <p>{{ bookmag.book_introduction }}</p>
+            </div>
+        </div>
+    </div>
+
+    <section id="content">
+        <div id="disappare" style="display: none;">
+            <p>请先登录！！！</p>
+        </div>
+        <div id="votetip" style="display: none">
+            <p>请选择投票数量！</p>
+            <ul id="votenumber" style="display: flex;padding: 0px;margin: 0px">
+                <li>
+                    <div>一张月票</div>
+                </li>
+                <li>
+                    <div>二张月票</div>
+                </li>
+                <li>
+                    <div>三张月票</div>
+                </li>
+                <li>
+                    <div>全部月票</div>
+                </li>
+            </ul>
+            <div style="display: flex;">
+                <div id="quxiao">取消</div>
+                <div id="queren">确认投票</div>
+            </div>
+        </div>
+        <aside id="left">
+            <img src={{ novels_list.book_image }}>
+        </aside>
+        <section id="middle">
+            <span style="font-size: 30px">{{ novels_list.book_name }}&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+            <span style="font-weight: bold">{{ user_list.user_name }}&nbsp&nbsp&nbsp&nbsp著</span>
+            <p></p>
+            <div style="display:flex;">
+                <div class="NovelType">
+                    <div>{{ novels_list.book_state }}</div>
+                </div>
+                <div class="NovelType">
+                    <div>{{ kind_list.kind_name }}</div>
+                </div>
+            </div>
+            <div style="line-height: 50px;width: 600px;height: 30px">
+                {#                <span>{{  novels_list.book_introduction  }}</span>#}
+            </div>
+            <div style="line-height: 10px;font-size: 18px">
+                <span>
+                    {{ novels_list.book_words }}<span style="font-size: 14px;font-weight: normal">&nbsp字</span>&nbsp&nbsp&nbsp&nbsp
+                </span>
+                <span>
+                    {{ novels_list.book_clickcount }}<span style="font-size: 14px;font-weight: normal">&nbsp点击</span>&nbsp&nbsp&nbsp&nbsp
+                </span>
+                <span id="ticketcount">{{ novels_list.book_ticketcount }}<span style="font-size: 14px;font-weight: normal">&nbsp推荐票</span>&nbsp&nbsp&nbsp&nbsp</span>
+            </div>
+            <div style="display:flex;">
+                <div id="button_1">
+                     {% if rprice.book_price == 0.0 %}
+                        <div>
+                            <a href="/Read/?chapter_id={{ chapter_list1.chapter_id }}&book_id={{ novels_list.book_id }}"
+                               style="text-decoration: none;"><p id="read" onclick="button_color_2()"
+                                                                 style="cursor: pointer;">免费阅读</p></a></div>
+                {% endif %}
+                    {% if rprice.book_price > 0.0 and info != 'true'%}
+                        <div>
+                            <a href="" class="big-link" data-reveal-id="myModal" data-animation="fade"
+                               style="text-decoration: none;"><p id="read" onclick="button_color_2()"
+                                                                 style="cursor: pointer;">选择购买</p></a></div>
+                    {% endif %}
+                {% if info == 'true' %}
+                 <div>
+                            <a href="/Read/?chapter_id={{ chapter_list1.chapter_id }}&book_id={{ novels_list.book_id }}"
+                               style="text-decoration: none;"><p id="read" onclick="button_color_2()"
+                                                                 style="cursor: pointer;">进入阅读</p></a></div>
+                {% endif %}
+                </div>
+                <div id="button_2">
+                    <div id="insert" onclick="button_color()" style="cursor: pointer;">{{ shujia }}</div>
+                </div>
+                <div id="button_3">
+                    <div id="vote" onclick="button_color_1()" style="cursor: pointer;">投推荐票</div>
+                </div>
+            </div>
+        </section>
+        <aside id="right">
+            <div style="margin-left: 50px">
+                <span id="estimate" style="font-size: 50px">{{ novels_list.book_estimate }}</span>
+                <p></p>
+                <span id="estimatecount" style="color: grey;">{{ novels_list.book_estimatecount }}人评价</span>
+                <p></p>
+                <span>我要评价</span>
+            </div>
+            <div id="pingfen" style="display: flex">
+                <ul class="cleanfloat">
+                    <li>&#9733;</li>
+                    <li>&#9733;</li>
+                    <li>&#9733;</li>
+                    <li>&#9733;</li>
+                    <li>&#9733;</li>
+                </ul>
+                <div id="baocun">保存</div>
+            </div>
+        </aside>
+    </section>
+
+    <div id="Bottom_content">
+        <section id="content1" style="height:235px;">
+            <div style="height: 50px">
+                <aside id="left1" style="display:flex;">
+                    <div class="button2">
+                <span id="detail" onclick="details()" style="cursor: pointer;">
+                    作品信息
+                </span>
+                    </div>
+                    <div class="button2" style="width: 100px">
+                <span id="catalog" onclick="catalog()" style="cursor: pointer;">
+                    目录
+                </span>
+                    </div>
+                    <div class="button2">
+                        <a href="/Talk/?book_id={{ novels_list.book_id }}">  <span>
+                    作品讨论
+                </span></a>
+                    </div>
+                </aside>
+
+                <div style="margin-left: 45px"><img src="../static/image/line_1.png" width="400"></div>
+                <div id="introduce">
+                    <br>
+                    <p style="line-height: 30px">
+                        &nbsp;&nbsp;&nbsp;&nbsp;{{ novels_list.book_introduction }}
+                    </p>
+                </div>
+            </div>
+            <div style="width: 180px;"></div>
+            <div>
+                <a href="/author_look/?user_id={{ user_list.user_id }}" style="text-decoration: none"><img width="148" height="137"
+                                                                           src={{ user_list.user_image }}>
+                    <div id="AuthorName">
+                        <div>
+                            {{ user_list.user_name }}
+                        </div>
+                    </div>
+                </a>
+                <div id="AuthorInfo">
+                    <div>
+                        {{ user_list.user_introduction }}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="content2">
+            <div style="height: 250px">
+                <aside id="left2">
+                    <div class="like">
+                <span>
+                    喜欢这本书的人还喜欢
+                </span>
+                    </div>
+                </aside>
+                <div id="LikeImg">
+                    {% for row in same_novels %}
+                        <div>
+                            <a class="other_like" href="/Details/?book_id={{ row.book_id }} "><img width="122"
+                                                                                                   height="166"
+                                                                                                   src={{ row.book_image }}>
+                                <span style="display: block;">{{ row.book_name }}</span></a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div>
+                <div id="Others">
+                    <span>其他作品&nbsp&nbsp&nbsp&nbsp</span>
+                    <a class="other_like" href="/author_look/"><span style="font-size: 14px;color: blue">更多>></span></a><a
+                        class="other_like" href="/Details/?book_id={{ others_novels.book_id }}">
+                    <div><img width="133" height="157" src={{ others_novels.book_image }}></div>
+                    <div style="margin-left: 20px;font-size: 20px"><p>
+                        {{ others_novels.book_name }}
+                    </p></div>
+                </a>
+                </div>
+            </div>
+        </section>
+
+
+        <footer style="margin-bottom: 150px">
+            {% autoescape off %}
+                <aside id="talk">
+                    <div id="TalkTitle"><a class="taolunqu" href="/Talk/?book_id={{ novels_list.book_id }}">作品讨论区</a>
+                    </div>
+                    <ul>
+                        {% for row in talk_list %}
+                            <li>
+                                <img src="../static/image/line.png" width="750px">
+                                <div style="display: flex">
+                                    <div id="userimg"><a href="/author_look/"><img width="43" height="46"
+                                                                                   src={{ row.user_image }}></a></div>
+                                    <div id="username">
+                                        <div><a class="other_like" href="/author_look/"
+                                                style="color: blue"><span>{{ row.user_name }}&nbsp&nbsp&nbsp</span></a>
+                                            <span style="color: grey">发表了评论</span></div>
+                                        <p class="talkcontent"><a class="other_like"
+                                                                  href="/TalkDetails/?talk_id={{ row.talk_id }}"
+                                                                  style="color: red;">{{ row.talk_content }}</a>
+                                        </p>
+                                        <div class="spanstyle">
+                                            <span style="color: grey">{{ row.talk_time }}</span>
+                                            <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                            <a id="user_response" href="/TalkDetails/?talk_id={{ row.talk_id }}"><img
+                                                    src="../static/image/huifu.png">{{ row.response_count }}条回复</a>
+                                            <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                                            <span name={{ row.talk_id }} class="likes"><span
+                                                    class="like">&#10084;{{ row.talk_like }}</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <div style="margin-left: 50px"><a class="taolunqu" href="/Talk/?book_id={{ novels_list.book_id }}">去讨论区>></a>
+                    </div>
+                </aside>
+            {% endautoescape %}
+            <aside>
+                <div id="Recommend">
+                    <span id="RecommendTitle">本周强推{{ kind_list.kind_name }}</span>
+                    <ul>
+                        {% for row in same_novels_1 %}
+                            <a class="other_like" href="/Details/?book_id={{ row.book_id }} ">
+                                <li>[{{ row.kind_name }}] {{ row.book_name }}</li>
+                            </a>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </aside>
+        </footer>
+    </div>
+
+
+    <div id="Bottom_content_1" style="display: none;position: absolute;z-index: -1">
+        <aside id="left1_1" style="display:flex;">
+            <div class="button2">
+                <span onclick="details()" style="cursor: pointer;">
+                    作品信息
+                </span>
+            </div>
+            <div class="button2" style="width: 100px">
+                <span onclick="catalog()" style="cursor: pointer;">
+                    目录
+                </span>
+            </div>
+            <div class="button2">
+                <a href="/Talk/?book_id={{ novels_list.book_id }}">  <span>
+                    作品讨论
+                </span></a>
+            </div>
+        </aside>
+        <section id="Bottom_content_1_1">
+            <img src="../static/image/line_1.png">
+            <div id="chapter">
+                <ul style="position: relative;float: left">
+                    {% for row in chapter_list %}
+                        <div class="chapter_name">
+                            <a id="chapter_a" href="/Read/?chapter_id={{ row.chapter_id }}&book_id={{ row.book_id }}">
+                                <li>{{ row.chapter_name }}</li>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+    </div>
+</div>
+</body>
+</html>
+
+
+

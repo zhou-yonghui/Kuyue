@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../static/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="../static/css/search.css">
+    <script language="JavaScript">
+        function breakout() {
+            window.top.location = "/main/"
+        }
+
+        function breakout_1() {
+            ty=document.getElementById("in1").value
+            window.top.location = "/query/?keys="+ty
+        }
+
+        function breakout_2() {
+            window.top.location = "/classify/"
+        }
+
+        function breakout_3() {
+            window.top.location = "/ranking/"
+        }
+
+        function breakout_4() {
+            window.top.location = "/wanben/"
+        }
+
+        function breakout_5() {
+            window.top.location = "/free/"
+        }
+
+        function breakout_6() {
+            window.top.location = "/author/"
+        }
+
+        function breakout_7() {
+            window.top.location = "/login/";
+
+        }
+
+        function breakout_8() {
+            window.top.location = "/register/";
+
+        }
+
+        function breakout_9() {
+            window.top.location = "/self/"
+        }
+    </script>
+
+    <style>
+        body {
+            background: white;
+            font: 14px Arial, 'Microsoft YaHei';
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #content {
+            width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #header {
+            height: 50px;
+            display: flex;
+        }
+
+        #header_title {
+            line-height: 0;
+            margin-left: 20px;
+
+        }
+
+        #header_label1 {
+            margin-top: 30px;
+            margin-left: 250px;
+        }
+
+        #header_label1 a {
+            color: black;
+            text-decoration: none;
+        }
+
+        #header_label1 a:hover {
+            color: red;
+            text-decoration: none;
+        }
+
+        #header_label2 {
+            margin-top: 30px;
+            margin-left: 50px;
+        }
+
+        #header_label2 a {
+            color: black;
+            text-decoration: none;
+        }
+
+        #header_label2 a:hover {
+            color: red;
+            text-decoration: none;
+        }
+
+        .btns {
+            margin-top: 23px;
+            width: 80px;
+            height: 40px;
+            border-radius: 5px;
+            background: url("../static/image/p2.jpg") no-repeat left top;
+            color: #FFF;
+        }
+
+        #in1 {
+            margin-top: 23px;
+            margin-left: 150px;
+            width: 300px;
+            height: 25px;
+            border: 1px solid #ccc;
+            padding: 7px;
+            border-radius: 3px;
+            padding-left: 5px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+        }
+
+        #in1:focus {
+            border-color: #66afe9;
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
+        }
+
+        #menu {
+            margin-top: 24px;
+            margin-left: 20px;
+            width: 1160px;
+            height: 45px;
+            background: black;
+        }
+
+        #menu_ul li {
+            line-height: 45px;
+            text-align: center;
+            width: 222px;
+            height: 45px;
+            list-style: none;
+            color: white;
+            border-right: 1px dashed white;
+            float: left;
+        }
+
+        #menu_pc {
+            float: left;
+        }
+
+        #menu_ul {
+
+            margin-top: 0px;
+            font-size: 20px;
+        }
+
+        #self:hover
+        {
+         cursor: pointer;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        function refresh() {
+            parent.location.reload()
+
+        }
+    </script>
+
+</head>
+<body>
+<div id="content">
+    <header id="header">
+        <div id=header_title>
+            <p style="font-size: 40px;"><strong onclick="breakout()" style="cursor: pointer;">酷阅小说网</strong></p>
+        </div>
+
+            <input id='in1' type="text" value="" name="keyword" placeholder="请输入关键词">
+            <input type="button"  class="btns" onclick="breakout_1()"
+                   onmouseover="this.style.backgroundPosition='left -40px'"
+                   onmouseout="this.style.backgroundPosition='left top'" value="搜索"/>
+
+        {% if  request.session.user_name %}
+            <div style="margin-left: 150px;margin-top: 15px"><h2>欢迎用户：<span onclick="breakout_9()" id="self">{{ request.session.user_name }}</span></h2></div>
+            <a href="/loginout/" style="margin-left:10px;margin-top: 35px;"><input type="button" style="background-color: crimson;color: white" value="注销" onclick="refresh()"/></a>
+        {% else %}
+        <div id="header_label1">
+            <a onclick="breakout_7()"  style="cursor: pointer;">登录</a>
+
+        </div>
+        <div id="header_label2">
+            <a onclick="breakout_8()" style="cursor: pointer;">注册</a>
+        </div>
+        {% endif %}
+
+
+    </header>
+    <div id="menu">
+        <div id="menu_pc">
+            <img src="../static/image/sc2.png" width="40px" height="45px" alt="">
+        </div>
+        <ul id=menu_ul>
+            <li onclick="breakout_2()" style="cursor: pointer;">
+                作品分类
+            </li>
+            <li onclick="breakout_3()" style="cursor: pointer;">
+                排行榜
+            </li>
+            <li onclick="breakout_4()" style="cursor: pointer;">
+                完本
+            </li>
+            <li onclick="breakout_5()" style="cursor: pointer;">
+                免费
+            </li>
+            <li style="border-right:white;cursor: pointer;" onclick="breakout_6()">
+                作者专区
+            </li>
+        </ul>
+    </div>
+</div>
+<!--{#<script type="application/javascript">#}-->
+<!--{#    $(document).ready(function () {#}-->
+<!--{#            $('.btns').click(function () {#}-->
+<!--{#                $.ajax({#}-->
+<!--{#                    type: 'POST',#}-->
+<!--{#                    url: '/query/',#}-->
+<!--{#                    data:{'keyword':$('#in1').val()},#}-->
+<!--{#                    success: function (data) {#}-->
+<!--{##}-->
+<!--{#                        console.log(data);#}-->
+<!--{#                        alert(data)#}-->
+<!--{#                    }#}-->
+<!--{#                })#}-->
+<!--{#            })#}-->
+<!--{#    })#}-->
+<!--{#</script>#}-->
+
+</body>
+
+</html>

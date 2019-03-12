@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>Title</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/verify.css">
+
+
+    <style type="text/css">
+        #big {
+            background-color: white;
+            margin: 0 auto;
+            width: 1200px;
+
+        }
+
+        table {
+            border-collapse: separate;
+            border-spacing: 20px;
+        {#background-color: #dddddd;#}
+
+        }
+
+        #form {
+            background-color: white;
+            width: 600px;
+            margin-left: 355px;
+            margin-right: 375px;
+            margin-top: 30px;
+        }
+
+        #register {
+            width: 250px;
+            height: 40px;
+            background-color: crimson;
+            font-size: larger;
+            color: white;
+            margin-top: 15px;
+            margin-left: 110px;
+        }
+
+        /*勾选前按钮的颜色*/
+        input:disabled, input[disabled]{
+            color: crimson;
+            -webkit-text-fill-color:black;/*按钮字体颜色*/
+            -webkit-opacity:1;
+            opacity: 1;
+        }
+
+        /*button是滑块验证码的按钮*/
+        button {
+            width: 250px;
+            height: 40px;
+            background-color: #e0dcff;
+            font-size: larger;
+            color: white;
+            margin-top: 0;
+            margin-left: 110px;
+        }
+
+        span {
+            color: green;
+            font-size: small;
+        }
+
+        /*浮窗*/
+        #choiceWindow {
+            display: none;
+            position: absolute;
+            top: 25%;
+            left: 35%;
+            width: 30%;
+            height: 35%;
+            padding: 20px;
+            border: 3px solid #ccc;
+            background-color: white;
+            z-index: 3;
+            overflow: auto;
+        }
+
+        #backGround {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1100px;
+            background-color: black;
+            z-index: 1;
+            -moz-opacity: 0.8;
+            opacity: 0.5; /*设置背景透明度*/
+            filter: alpha(opacity=100);
+        }
+
+        #x:hover {
+            cursor: pointer;
+            color: rgb(55, 198, 192);
+        }
+    </style>
+    <script src="/static/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        {#function checkForm() {#}
+        {#    var passtip = checkPassword();#}
+        {#    var conpasstip = ConfirmPassword();#}
+        {#    var phonetip = checkPhone();#}
+        {#    return passtip && conpasstip && phonetip;#}
+        {##}
+
+            $(document).ready(function () {
+                $("#register").click(function () {
+
+                    userphone = $('#userPhone').val();
+                    password = $('#userPasword').val();
+                    passwords=$('#userConfirmPasword').val();
+                    message=$('#message').val();
+                    $.ajax({
+                        url: '/judge/',
+                        data: {'userphone': userphone, 'password': password,'passwords':passwords,'message':message},
+                        type:'post',
+                         {#async :true,#}
+                        success: function (ret) {
+                            if (ret == 'ok') {
+                                $('#phoneErr').show().text('用户名正确');
+                                window.location.href = "/login/"
+                            }
+                            if(ret=='kong'){
+                                $('#phoneErr').show().text('用户必填').css({color:'red'});
+                            }
+                            if(ret=='cunzai') {
+                                $('#phoneErr').show().text('用户已存在,重新输入').css({color:'red'});
+                            }
+                            if(ret=='nomsg'){
+                                $('#message').show().text('验证码必填').css({color:'red'});
+                            }
+                            if(ret=='msgerror'){
+                                $('#getmessage').show().text('验证码错误').css({color:'red'});
+                            }
+
+                            if(ret=='nomi'){
+                                $('#passwordErr').show().text('密码必填').css({color:'red'});
+                            }
+                            if(ret=='nomi'){
+                                $('#conPasswordErr').show().text('密码必填').css({color:'red'});
+                            }
+
+
+                        }
+                    })
+                })
+            });
+
+            function check() {
+                    phone=$('#userPhone').val();
+
+                    $.ajax({
+                         url: '/send_message/',
+                        data: {'phone': phone,},
+                        type:'post',
+                        success:function (res) {
+
+
+                        }
+            })
+
+            }
+
+
+
+
+
+
+            function checkPhone() {
+                var userphone = document.getElementById('userPhone');
+                var phonrErr = document.getElementById('phoneErr');
+                var pattern = /^1[34578]\d{9}$/; //验证手机号正则表达式
+                if (!pattern.test(userphone.value)) {
+                    phonrErr.innerHTML = "手机号码不合规范".fontcolor('red');
+                    phonrErr.className = "error";
+                    return false;
+                }
+                else {
+                    phonrErr.innerHTML = "手机号有效".fontcolor('red');
+                    phonrErr.className = "success";
+                    return true;
+                }
+
+            }
+
+            function checkPassword() {
+                var userpasswd = document.getElementById('userPasword');
+                var errPasswd = document.getElementById('passwordErr');
+                var pattern = /^\w{6,12}$/; //密码要在6-12位
+                if (!pattern.test(userpasswd.value)) {
+                    errPasswd.innerHTML = "密码不合规范".fontcolor('red');
+                    errPasswd.className = "error";
+                    return false;
+                }
+                else {
+                    errPasswd.innerHTML = "密码有效".fontcolor('red');
+                    errPasswd.className = "success";
+                    return true;
+                }
+            }
+
+            //确认密码
+            function ConfirmPassword() {
+                var userpasswd = document.getElementById('userPasword');
+                var userConPassword = document.getElementById('userConfirmPasword');
+                var errConPasswd = document.getElementById('conPasswordErr');
+                if ((userpasswd.value) != (userConPassword.value) || userConPassword.value.length == 0) {
+                    errConPasswd.innerHTML = "两次密码不同".fontcolor('red')
+                    errConPasswd.className = "error";
+                    return false;
+                }
+                else {
+                    errConPasswd.innerHTML = "密码正确".fontcolor('red');
+                    errConPasswd.className = "success";
+                    return true;
+                }
+            }
+
+            //注册显示
+            function disable() {
+                document.getElementById("register").disabled = true
+
+            }
+
+            function enable() {
+                document.getElementById("register").disabled = false
+            }
+
+
+
+    </script>
+</head>
+<body>
+
+<div id="big">
+
+    <div>
+        <h1 style="font-size: 30px">酷阅小说网|<span style="font-size: 20px">用户注册</span></h1>
+    </div>
+    <div>
+        <h2 align="center" style="margin-top: 50px">注册信息</h2>
+    </div>
+    <div id="form">
+        <form >
+            <table>
+                <tr>
+                    <td><label for="userPhone">手机号码</label></td>
+                    <td><input type="text"  id="userPhone" class="userName" onblur="checkPhone()" oninput="checkPhone()"
+                               style="width: 250px;height: 30px;font-size:1em"></td>
+                    <td><span class="default" id="phoneErr">请输入11位手机号码</span></td>
+                </tr>
+{#                 <tr>#}
+{#                    <td></td>#}
+{#                    <td><span class="default" id="phoneErr"></span></td>#}
+{#                    <td></td>#}
+{#                </tr>#}
+                <tr>
+
+                    <td>短信验证</td>
+                    <td><input type="text" id="message" name="message" style="width: 250px;height: 30px;font-size:1em">
+                    </td>
+                    <td><input type="button" id="yan" onclick="check()"  value="获取验证码"></td>
+
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><span id="getmessage"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><label for="userPasword">密码</label></td>
+                    <td><input type="password" id="userPasword" class="userName" onBlur="checkPassword()"
+                               oninput="checkPassword()" style="width: 250px;height: 30px;font-size:1em"></td>
+                    <td><span class="default" id="passwordErr">请输入6-12位密码</span></td>
+                </tr>
+{#                <tr>#}
+{#                    <td></td>#}
+{#                    <td><span class="default" id="passwordErr"></span></td>#}
+{#                    <td></td>#}
+{#                </tr>#}
+                <tr>
+                    <td><label for="userConfirmPasword">确认密码</label></td>
+                    <td><input type="password" id="userConfirmPasword" class="userName" onBlur="ConfirmPassword()"
+                               oninput="ConfirmPassword()" style="width: 250px;height: 30px;font-size:1em"></td>
+                    <td><span class="default" id="conPasswordErr">再输入确认密码</span></td>
+                </tr>
+{#                 <tr>#}
+{#                    <td></td>#}
+{#                    <td><span class="default" id="conPasswordErr"></span></td>#}
+{#                    <td></td>#}
+{#                </tr>#}
+
+            </table>
+
+
+            <div>
+                <input type="checkbox" onclick="if (this.checked) {enable()} else {disable()}" style="margin-left: 110px;margin-top: 20px"><label>我已阅读并同意</label><a href="" style="text-decoration: none">《用户服务手册》</a>
+            </div>
+            <div>
+                <input type="button" name="divBtn" id="register" disabled="true" value="注册">
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="/static/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/verify.js"></script>
+<script type="text/javascript">
+    {#//悬浮窗#}
+    {#$(document).ready(function () {#}
+    {#    $("#btn").click(function () {#}
+    {#        $("#choiceWindow").slideDown(300);#}
+    {#        $("#backGround").show();#}
+    {##}
+    {#    });#}
+    {##}
+    {#    $("#x").click(function () {#}
+    {#        $("#choiceWindow").slideUp(300);#}
+    {#        $("#backGround").hide();#}
+    {#    })#}
+    {##}
+    {#});#}
+
+
+    	$('#mpanel1').slideVerify({
+		type : 1,		//类型
+		vOffset : 5,	//误差量，根据需求自行调整
+		barSize : {
+			width : '42%',
+			height : '30px',
+		},
+		ready : function() {
+		},
+		success : function() {
+			{#alert('验证成功，添加你自己的代码！');#}
+            return true;
+			//......后续操作
+		},
+		error : function() {
+		    return false;
+//		        	alert('验证失败！');
+		}
+
+	});
+
+</script>
+
+</body>
+</html>

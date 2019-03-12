@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/shoplog.css">
+    <title>购买</title>
+</head>
+<body>
+<div id="panel">
+{#    <div class="header">#}
+{#        <p class="omg">酷阅小说网</p>#}
+{#        <ul class="ultitle">#}
+{#            <li class="li1" style="margin-left:50px;width:80px"><a href="">作品分类</a></li>#}
+{#            <li><a href="" style="width:60px">排行榜</a></li>#}
+{#            <li><a href="" style="width:40px">完本</a></li>#}
+{#            <li><a href="" style="width:40px">免费</a></li>#}
+{#            <li><a href="" style="width:80px">作品专区</a></li>#}
+{#        </ul>#}
+{#    </div>#}
+    <div>
+        <iframe class="if " src="/log/main/" width="1200px" frameborder="0" height="123.5px"></iframe>
+    </div>
+    <br/>
+    <p style="font-size:25px;font-weight:bolder;color:orangered">确认订单信息</p>
+    <div class="books">
+        <table class="mybooks">
+            <colgroup>
+            <col width=300px align="left">
+            <col width=300px align="left">
+            <col width=300px align="left">
+                 <col width=300px align="left">
+            </colgroup>
+            <tr>
+                <th>小说名称</th>
+                <th>消费金额</th>
+                <th>数量</th>
+                <th>合计</th>
+            </tr>
+            <tr>
+            <td><div class="imgs" style="background:url(/static/image/150_z.jpg);width:150px;height:200px;">
+                <span>"在破败中崛起，在寂灭中复苏。沧海成尘，雷电枯竭， 那一缕幽雾又一次临近大地，世间的枷锁被打开"</span>
+            </div><span id="title">圣墟</span></td>
+            <td><span>200</span></td>
+            <td><a href="">+&nbsp;</a>1<a href="">&nbsp;-</a></td>
+                <td><span>200元</span></td>
+        </tr>
+            <tr>
+            <td><div class="imgs" style="background:url(/static/image/150_z.jpg);width:150px;height:200px;">
+                <span>"在破败中崛起，在寂灭中复苏。沧海成尘，雷电枯竭， 那一缕幽雾又一次临近大地，世间的枷锁被打开"</span>
+            </div><span id="title">圣墟</span></td>
+            <td><span>200</span></td>
+            <td><a href="">+&nbsp;</a>2<a href="">&nbsp;-</a></td>
+                <td><span>400元</span></td>
+        </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <div class="lastdiv">
+            <p class="total">总计:<span style="color:orange">600</span>元</p>
+            <p><input type="button"value="提交订单"/></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,292 @@
+body {
+    font-size: 14px;
+    margin: 0px;
+    padding: 0px;
+    background-color: rgb(237, 231, 218);
+}
+
+header {
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+header span {
+    font-size: 40px
+}
+
+#title {
+    margin-bottom: 60px;
+}
+
+#title p {
+    text-align: center;
+    font-size: 30px;
+}
+
+#content {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f8f3e9;
+    box-shadow: 0 0 15px 0 #CCC;
+    border-radius: 3px;
+    padding-bottom: 10px;
+    min-height: 600px;
+    margin-bottom: 70px;
+    border: 1px solid #d8d8d8;
+}
+
+#content1 {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    box-shadow: 0 0 15px 0 #CCC;
+    border-radius: 3px;
+    padding-bottom: 10px;
+    min-height: 600px;
+    margin-bottom: 70px;
+    border: 1px solid #d8d8d8;
+}
+
+#text {
+    font-size: 20px;
+}
+
+#text_div {
+    margin-left: 70px;
+    margin-right: 70px;
+}
+
+aside {
+    position: fixed;
+    background-color: #f8f3e9;
+    margin-top: 60px;
+    margin-left: 210px;
+}
+
+.left {
+    width: 50px;
+    height: 60px;
+    text-align: center;
+    border: 1px solid #d8d8d8;
+}
+
+.left a {
+    color: black;
+    text-decoration: none;
+}
+
+.left a:hover {
+    color: red;
+    text-decoration: none;
+}
+
+.left span:hover {
+    color: red;
+    text-decoration: none;
+}
+
+#set {
+    height: 185px;
+    width: 250px;
+    background-color: #eee;
+}
+
+.color {
+    display: flex;
+}
+
+.color_mise {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    border: 1px gray solid;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: #ede7da;
+    cursor: pointer;
+}
+
+.color_maihuang {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    border: 1px gray solid;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: #e0ce9e;
+    cursor: pointer;
+}
+
+.color_yaqing {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    border: 1px gray solid;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: #cddfcd;
+    cursor: pointer;
+}
+
+.color_hulan {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    border: 1px gray solid;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: #cfdde1;
+    cursor: pointer;
+}
+
+.color_danfen {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    border: 1px gray solid;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: #ebcece;
+    cursor: pointer;
+}
+
+.color_wuhui {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    border: 1px gray solid;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: #d0d0d0;
+    cursor: pointer;
+
+}
+
+.font {
+    margin-top: 20px;
+    display: flex;
+    text-align: center;
+}
+
+#font_size {
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 30px;
+    border: 1px gray solid;
+    cursor: pointer;
+}
+
+#font_jia {
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 30px;
+    border: 1px gray solid;
+    cursor: pointer;
+}
+
+#font_jian {
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 30px;
+    border: 1px gray solid;
+    cursor: pointer;
+}
+
+.font1 {
+    margin-top: 20px;
+    display: flex;
+    text-align: center;
+}
+
+#font_yahei {
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 30px;
+    border: 1px gray solid;
+    cursor: pointer;
+}
+
+#font_songti {
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 30px;
+    border: 1px gray solid;
+    cursor: pointer;
+}
+
+#font_kaishu {
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 30px;
+    border: 1px gray solid;
+    cursor: pointer;
+}
+
+.chapter_name {
+    width: 300px;
+    position: relative;
+    float: left;
+    height: 50px;
+}
+
+.chapter_name li {
+    list-style: none;
+    background-image: url(../image/lineH_1.gif);
+    background-position: 50% bottom;
+    background-repeat: repeat-x;
+}
+
+#chapter_a {
+    text-decoration: none;
+    color: black;
+}
+
+#chapter_a:visited {
+    color: black;
+}
+
+#chapter_a:hover {
+    color: red;
+}
+
+#last {
+    text-decoration: none;
+    color: black;
+}
+
+#last:visited {
+    color: black;
+}
+
+#last:hover {
+    color: red;
+}
+
+
+#next {
+    text-decoration: none;
+    color: black;
+}
+
+#next:visited {
+    color: black;
+}
+
+#next:hover {
+    color: red;
+}

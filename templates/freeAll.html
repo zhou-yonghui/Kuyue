@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>免费作品</title>
+    <script type="text/javascript" src="/static/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="/static/css/classify_cs.css">
+    <link rel="stylesheet" href="/static/css/freeall.css">
+    <script src="/static/js/free.js" type="application/javascript"></script>
+</head>
+<body>
+<div id="panel">
+    <div>
+        <iframe class="if " src="/Header/" width="1200px" frameborder="0" height="123.5px"></iframe>
+    </div>
+    <br/>
+    <div class="free-content" id="nav">
+            <ul class=" free-tag-u">
+                <li >
+                    <a class="aa1" href="/free/">限时免费</a>
+                </li>
+                <li class="rt1"><a id="ryt" href="">免费作品</a></li>
+            </ul>
+            <div class="her">
+            </div>
+        </div>
+    <div class="second-panel" style="margin-left: 20px">
+        <div class="select-list">
+            <div id="fg">
+                <a href="/freeAll/">全部</a>
+            </div>
+            <div id="fg1">
+                {% if type != 'all' and type != 'None' and type != None %}
+                    {% if type == 'xuanhuan' %}
+                        <a id="state1"
+                           href="?type=all&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">{{ dict1.xuanhuan }}<span>X</span></a>
+                    {% endif %}
+                    {% if type == 'qihuan' %}
+                        <a id="state1"
+                           href="?type=all&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">{{ dict1.qihuan }}<span>X</span></a>
+                    {% endif %}
+                    {% if type == 'wuxia' %}
+                        <a id="state1"
+                           href="?type=all&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">{{ dict1.wuxia }}<span>X</span></a>
+                    {% endif %}
+                    {% if type == 'xianxia' %}
+                        <a id="state1"
+                           href="?type=all&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">{{ dict1.xianxia }}<span>X</span></a>
+                    {% endif %}
+                    {% if type == 'dushi' %}
+                        <a id="state1"
+                           href="?type=all&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">{{ dict1.dushi }}<span>X</span></a>
+                    {% endif %}
+                    {% if type == 'xianshi' %}
+                        <a id="state1"
+                           href="?type=all&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">{{ dict1.xianshi }}<span>X</span></a>
+                    {% endif %}
+                    {% if type == 'junshi' %}
+                        <a id="state1"
+                           href="?type=all&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">{{ dict1.junshi }}<span>X</span></a>
+                    {% endif %}
+                    {% if type == 'lishi' %}
+                        <a id="state1"
+                           href="?type=all&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">{{ dict1.lishi }}<span>X</span></a>
+                    {% endif %}
+                    {% if type == 'youxi' %}
+                        <a id="state1"
+                           href="?type=all&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">{{ dict1.youxi }}<span>X</span></a>
+                    {% endif %}
+                    {% if type == 'tiyu' %}
+                        <a id="state1"
+                           href="?type=all&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">{{ dict1.tiyu }}<span>X</span></a>
+                    {% endif %}
+                    {% if type == 'kehuan' %}
+                        <a id="state1"
+                           href="?type=all&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">{{ dict1.kehuan }}<span>X</span></a>
+                    {% endif %}
+                    {% if type == 'lingyi' %}
+                        <a id="state1"
+                           href="?type=all&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">{{ dict1.lingyi }}<span>X</span></a>
+                    {% endif %}
+                    {% if type == 'erciyuan' %}
+                        <a id="state1"
+                           href="?type=all&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">{{ dict1.erciyuan }}<span>X</span></a>
+                    {% endif %}
+
+                {% endif %}
+                {% if state != 'None' and state != 'all' and state != None %}
+                    {% if state == 'lianzai' %}
+                    <a id="state2"
+                       href="?type={{ type }}&state=all&shuxing={{ shuxing }}&word={{ word }}">{{ dict2.lianzai }}<span>X</span></a>
+                        {% endif %}
+                    {% if state == 'wanben' %}
+                    <a id="state2"
+                       href="?type={{ type }}&state=all&shuxing={{ shuxing }}&word={{ word }}">{{ dict2.wanben }}<span>X</span></a>
+                        {% endif %}
+                {% endif %}
+                {% if shuxing != 'all' and shuxing != 'None' and shuxing != None %}
+                 {% if shuxing == 'free' %}
+                    <a id="state3"
+                       href="?type={{ type }}&state={{ state }}&shuxing=all&word={{ word }}">{{ dict5.free }}<span>X</span></a>
+                     {% endif %}
+                    {% if shuxing == 'fufei' %}
+                    <a id="state3"
+                       href="?type={{ type }}&state={{ state }}&shuxing=all&word={{ word }}">{{ dict5.fufei }}<span>X</span></a>
+                     {% endif %}
+                {% endif %}
+                {% if word != 'all' and word != 'None' and word != None %}
+                    {% if word == 'w1' %}
+                       <P></P>
+                    <a id="state4"
+                       href="?type={{ type }}&state={{ state }}&shuxing={{ shuxing }}&word=all">{{ dict6.w1 }}<span>X</span></a>
+                        {% endif %}
+                    {% if word == 'w2' %}
+                        <p></p>
+                    <a id="state4"
+                       href="?type={{ type }}&state={{ state }}&shuxing={{ shuxing }}&word=all">{{ dict6.w2 }}<span>X</span></a>
+                        {% endif %}
+                    {% if word == 'w3' %}
+                        <p></p>
+                    <a id="state4"
+                       href="?type={{ type }}&state={{ state }}&shuxing={{ shuxing }}&word=all">{{ dict6.w3 }}<span>X</span></a>
+                        {% endif %}
+                    {% if word == 'w4' %}
+                        <p></p>
+                    <a id="state4"
+                       href="?type={{ type }}&state={{ state }}&shuxing={{ shuxing }}&word=all">{{ dict6.w5 }}<span>X</span></a>
+                        {% endif %}
+                    {% if word == 'w5' %}
+                        <p></p>
+                    <a id="state4"
+                       href="?type={{ type }}&state={{ state }}&shuxing={{ shuxing }}&word=all">{{ dict6.w5 }}<span>X</span></a>
+                        {% endif %}
+                {% endif %}
+            </div>
+            <div class="work-filter">
+                <h3>分类</h3>
+                <ul class="row-1">
+                    <li><a class="act" href="?type=all&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">全部</a></li>
+                    <li><a id="tha"href="?type=xuanhuan&state={{ state }}&shuxing={{ shuxing }}&word={{ word }} " class="bng">玄幻</a></li>
+                    <li><a id="tha"href="?type=qihuan&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">奇幻</a></li>
+                    <li><a id="tha"href="?type=wuxia&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">武侠</a></li>
+                    <li><a id="tha"href="?type=xianxia&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">仙侠</a></li>
+
+                </ul>
+                <ul class="row-2">
+                    <li><a id="tha"href="?type=dushi&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">都市</a></li>
+                    <li><a id="tha"href="?type=xianshi&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">现实</a></li>
+                    <li><a id="tha"href="?type=junshi&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">军事</a></li>
+                    <li><a id="tha"href="?type=lishi&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">历史</a></li>
+                    <li><a id="tha"href="?type=youxi&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">游戏</a></li>
+                </ul>
+                <ul class="row-3">
+                    <li><a id="tha"href="?type=tiyu&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">体育</a></li>
+                    <li><a id="tha"href="?type=kehuan&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">科幻</a></li>
+                    <li><a id="tha"href="?type=lingyi&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">灵异</a></li>
+                    <li><a id="tha"href="?type=erciyuan&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}">二次元</a></li>
+
+
+                </ul>
+            </div>
+            <div class="work-filter">
+                <h3>状态</h3>
+                <ul>
+                    <li><a class="act" href="?type={{ type }}&state=all&shuxing={{ shuxing }}&word={{ word }}">全部</a></li>
+                    <li><a id="tha"href="?type={{ type }}&state=lianzai&shuxing={{ shuxing }}&word={{ word }}">连载</a></li>
+                    <li><a id="tha"href="?type={{ type }}&state=wanben&shuxing={{ shuxing }}&word={{ word }}">完本</a></li>
+                </ul>
+            </div>
+            <div class="work-filter">
+                <h3>属性</h3>
+                <ul>
+                    <li><a class="act" href="?type={{ type }}&state={{ state }}&shuxing=all&word={{ word }}">全部</a></li>
+                    <li><a id="tha"href="?type={{ type }}&state={{ state }}&shuxing=free&word={{ word }}">免费</a></li>
+                    <li><a id="tha"href="?type={{ type }}&state={{ state }}&shuxing=fufei&word={{ word }}">付费</a></li>
+                </ul>
+            </div>
+            <div class="work-filter">
+                <h3>字数</h3>
+                <ul>
+                    <li><a class="act" href="?type={{ type }}&state={{ state }}&shuxing={{ shuxing }}&word=all">全部</a></li>
+                    <li><a id="tha"href="?type={{ type }}&state={{ state }}&shuxing={{ shuxing }}&word=w1">30万字以下</a></li>
+                    <li><a id="tha"href="?type={{ type }}&state={{ state }}&shuxing={{ shuxing }}&word=w2">30-50万字</a></li>
+                    <li><a id="tha"href="?type={{ type }}&state={{ state }}&shuxing={{ shuxing }}&word=w3">50-100万字</a></li>
+                    <li><a id="tha"href="?type={{ type }}&state={{ state }}&shuxing={{ shuxing }}&word=w4">100-200万字</a></li>
+                    <li><a id="tha"href="?type={{ type }}&state={{ state }}&shuxing={{ shuxing }}&word=w5">200万字以上</a></li>
+                </ul>
+            </div>
+{#            <div class="work-filter">#}
+{#                <h3>品质</h3>#}
+{#                <ul>#}
+{#                    <li><a class="act" href="">全部</a></li>#}
+{#                    <li><a href="">签约作品</a></li>#}
+{#                    <li><a href="">精品小说</a></li>#}
+{#                </ul>#}
+{#            </div>#}
+{#            <div class="work-filter">#}
+{#                <h3>更新时间</h3>#}
+{#                <ul>#}
+{#                    <li><a class="act" href="">全部</a></li>#}
+{#                    <li><a href="">三日内</a></li>#}
+{#                    <li><a href="">七日内</a></li>#}
+{#                    <li><a href="">半月内</a></li>#}
+{#                    <li><a href="">一月内</a>#}
+{#                </ul>#}
+{#            </div>#}
+{#            <div class="work-filter">#}
+{#                <h3>标签</h3>#}
+{#                <ul>#}
+{#                    <li><a class="act" href="">全部</a></li>#}
+{#                    <li><a href="">豪门</a></li>#}
+{#                    <li><a href="">孤儿</a></li>#}
+{#                    <li><a href="">盗贼</a></li>#}
+{#                    <li><a href="">特工</a></li>#}
+{#                    <li><a href="">黑客</a></li>#}
+{#                    <li><a href="">明星</a></li>#}
+{#                    <li><a href="">特种兵</a></li>#}
+{#                    <li><a href="">老师</a></li>#}
+{#                    <li><a href="">杀手</a></li>#}
+{#                </ul>#}
+{#            </div>#}
+        </div>
+        <div class="main-content-wrap">
+            <div class="book-img-text">
+                <ul class="all-img-list-cf">
+                    {% for contact in contacts %}
+                    <li>
+                        <div class="rt">
+                            <div class="book-img-box">
+                                <a href="/Details/?book_id={{ contact.book_id }}">
+                                    <img class="imgs" src="{{ contact.book_image }}"/>
+                                </a>
+                            </div>
+                            <div class="book-mid-info">
+                                <h4><a href="/Details/?book_id={{ contact.book_id }}">{{ contact.book_name }}</a></h4>
+                                <p class="author">
+                                    <img style="width:14px;height:14px" src="../static/image/author_z.png"/>
+                                    <a href="/author_look/?user_id={{ contact.user_id }}"> <span>{{ contact.user_name }}</span></a>
+                                    <span>|</span>
+                                    <span>{{ contact.kind_name }}</span>
+
+                                    <span>|</span>
+                                    <span>{{ contact.book_state }}</span>
+                                </p>
+                                <p class="intro">
+                                    {{ contact.book_introduction }}
+                                </p>
+                                <p>
+                                    <span>
+                                       <span class="SHU">{{ contact.book_words }}</span>字
+                                </span>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+
+                </ul>
+            </div>
+            {% if contacts.paginator.num_pages > 1 %}
+            <div class="page-box-cf">
+                <div class="pagation">
+                    <div class="lbf">
+                         <ul class="lbf-list">
+                            {% if contacts.has_previous %}
+                                <li><a href="?type={{ type }}&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}&page=1" >首页</a></li>
+                                <li class="lbf-item"><a href="?type={{ type }}&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}&page={{ contacts.previous_page_number }}"
+                                                        class="lbf-bf1"><</a></li>
+                            {% endif %}
+                        {% if  start_index >= 1 %}
+                            <li>...</li>
+                        {% endif %}
+                             {% for pg in page_range %}
+                                 {% if contacts.number == pg %}
+                                      <li class="btn btn-default"style="font-size:25px;font-weight:bold;color:lawngreen;line-height:20px;">{{pg}}</li>
+                                     {% else %}
+                                      <li><a href="?type={{ type }}&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}&page={{pg}}" class="btn">{{pg}}</a></li>
+                                 {% endif %}
+                        {% endfor %}
+                        {% if end_index  < contacts.paginator.num_pages %}
+                            <li>...</li>
+                        {% endif %}
+                            {% if contacts.has_next %}
+                                <li class="lbf-item"><a href="?type={{ type }}&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}&page={{ contacts.next_page_number }}"
+                                                        class="lbf-bf1">></a></li>
+                                 <li><a href="?type={{ type }}&state={{ state }}&shuxing={{ shuxing }}&word={{ word }}&page={{ contacts.paginator.num_pages }}" >尾页</a></li>
+                            {% endif %}
+                        <li class="lbf-item">
+                                <input name='page' id="jumppage" style=" width:30px;" type="text"/>
+                                <a id="jump" href="javascript:goToPage('{{ type }}','{{ state }}','{{ shuxing }}','{{ word }}');" >GO</a>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        {% endif %}
+         <div id="backimg">
+                <img id="imgsd" src="/static/image/nonebook.PNG"/>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

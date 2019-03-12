@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link href="/static/css/style.css" rel='stylesheet' type='text/css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="App Loction Form,Login Forms,Sign up Forms,Registration Forms,News latter Forms,Elements"./>
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+
+        p{
+            color: black;
+            font-size: smaller;
+        }
+        label{
+
+        }
+        label{
+            float: left;
+        }
+    </style>
+    <script src="/static/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+       $(document).ready(function () {
+                $("#register").click(function () {
+
+                    userphone = $('#userPhone').val();
+                    password = $('#userPasword').val();
+                    passwords=$('#userConfirmPasword').val();
+                    message=$('#message').val();
+                    $.ajax({
+                        url: '/judge/',
+                        data: {'userphone': userphone, 'password': password,'passwords':passwords,'message':message},
+                        type:'post',
+                         {#async :true,#}
+                        success: function (ret) {
+                            if (ret == 'ok') {
+                                $('#phoneErr').show().text('用户名正确');
+                                window.location.href = "/login/"
+                            }
+                            if(ret=='kong'){
+                                $('#phoneErr').show().text('用户必填').css({color:'red'});
+                            }
+                            if(ret=='cunzai') {
+                                $('#phoneErr').show().text('用户已存在,重新输入').css({color:'red'});
+                            }
+                            if(ret=='nomsg'){
+                                $('#getmessage').show().text('验证码必填').css({color:'red'});
+                            }
+                            if(ret=='msgerror'){
+                                $('#getmessage').show().text('验证码错误').css({color:'red'});
+                            }
+
+                            if(ret=='nomi'){
+                                $('#passwordErr').show().text('密码必填').css({color:'red'});
+                            }
+                            if(ret=='nomi'){
+                                $('#conPasswordErr').show().text('密码必填').css({color:'red'});
+                            }
+
+
+                        }
+                    })
+                })
+            });
+
+            function check() {
+
+                 {#phone=$('#userPhone').val();#}
+                   {#alert('11111');#}
+                 {#  if(phone!=''){#}
+                       {#alert('123456');#}
+                 {##}
+                 {#      $.ajax({#}
+                 {#        url: '/send_message/',#}
+                 {#       data: {'phone': phone,},#}
+                 {#       type:'post',#}
+                 {#       success:function (res) {#}
+                 {##}
+                 {#       }#}
+                 {#        })#}
+                 {#  }#}
+
+
+            }
+
+
+            function checkPhone() {
+                var userphone = document.getElementById('userPhone');
+                var phonrErr = document.getElementById('phoneErr');
+                var pattern = /^1[34578]\d{9}$/; //验证手机号正则表达式
+                if (!pattern.test(userphone.value)) {
+                    phonrErr.innerHTML = "手机号码不合规范".fontcolor('red');
+                    phonrErr.className = "error";
+                    return false;
+                }
+                else {
+                    phonrErr.innerHTML = "手机号有效".fontcolor('red');
+                    phonrErr.className = "success";
+                    return true;
+                }
+
+            }
+
+            function checkPassword() {
+                var userpasswd = document.getElementById('userPasword');
+                var errPasswd = document.getElementById('passwordErr');
+                var pattern = /^\w{6,12}$/; //密码要在6-12位
+                if (!pattern.test(userpasswd.value)) {
+                    errPasswd.innerHTML = "密码不合规范".fontcolor('red');
+                    errPasswd.className = "error";
+                    return false;
+                }
+                else {
+                    errPasswd.innerHTML = "密码有效".fontcolor('red');
+                    errPasswd.className = "success";
+                    return true;
+                }
+            }
+
+            //确认密码
+            function ConfirmPassword() {
+                var userpasswd = document.getElementById('userPasword');
+                var userConPassword = document.getElementById('userConfirmPasword');
+                var errConPasswd = document.getElementById('conPasswordErr');
+                if ((userpasswd.value) != (userConPassword.value) || userConPassword.value.length == 0) {
+                    errConPasswd.innerHTML = "两次密码不同".fontcolor('red')
+                    errConPasswd.className = "error";
+                    return false;
+                }
+                else {
+                    errConPasswd.innerHTML = "密码正确".fontcolor('red');
+                    errConPasswd.className = "success";
+                    return true;
+                }
+            }
+
+            //注册显示
+            function disable() {
+                document.getElementById("register").disabled = true
+
+            }
+
+            function enable() {
+                document.getElementById("register").disabled = false
+            }
+
+
+    </script>
+
+</head>
+<body >
+        <div class="app-location">
+            <h2><strong>Welcome to <a href="/main/">KuYue</a></strong></h2>
+            <div class="line"><span></span></div>
+{#             <div class="location"><img src="/static/image/location.png" class="img-responsive" alt="" /></div>#}
+            <form>
+                    <label>手机号：</label><input type="text" id="userPhone" class="userName" onblur="checkPhone()" oninput="checkPhone()">
+                    <p id="phoneErr"></p>
+                    <label>验证码：</label><input type="text" id="message" name="message" >
+                    <p id="getmessage"></p>
+                    <input type="button" id="yan" onclick="check()"  value="获取验证码">
+                    <label>密码：</label><input type="password" id="userPasword" class="userName" onBlur="checkPassword()"  oninput="checkPassword()" >
+                    <p id="passwordErr"></p>
+                    <label>确认密码：</label><input type="password" id="userConfirmPasword" class="userName" onBlur="ConfirmPassword()"  oninput="ConfirmPassword()">
+                    <p id="conPasswordErr"></p>
+
+            <div>
+                <input type="checkbox" onclick="if (this.checked) {enable()} else {disable()}" style="margin-left: 110px;margin-top: 20px"><span style="font-size: smaller">我已阅读并同意</span><a href="" style="text-decoration: none;font-size: smaller">《用户服务手册》</a>
+            </div>
+            <div class="submit">
+                <input type="button" name="divBtn" value="register" id="register" disabled="true">
+            </div>
+            </form>
+        </div>
+        <!--start-copyright-->
+        <div class="copy-right">
+                {#<p>Copyright &copy; 2015.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>#}
+        </div>
+    <!--//end-copyright-->
+
+
+</body>
+{#<input type="button" id="btn" value="免费获取验证码" />#}
+<script type="text/javascript">
+    var wait=60;
+    var userphone = document.getElementById('userPhone');
+     var pattern = /^1[34578]\d{9}$/;
+        function time(o) {
+            if(userphone==''){
+                return false;
+            }
+            if(!pattern.test(userphone.value)){
+                return false;
+            }
+            else{
+                if (wait == 0) {
+                o.removeAttribute("disabled");
+                o.value="获取验证码";
+                wait = 60;
+                }
+                else {
+                    o.setAttribute("disabled", true);
+                    o.value="重新发送(" + wait + ")";
+                    wait--;
+                    setTimeout(function() {
+                        time(o)
+                    },
+                    1000)
+                }
+        }
+
+    }
+    document.getElementById("yan").onclick=function(){
+            time(this);
+
+            phone=$('#userPhone').val();
+                   {#alert('11111');#}
+                   if(phone!=''){
+                       {#alert('123456');#}
+
+                       $.ajax({
+                         url: '/send_message/',
+                        data: {'phone': phone,},
+                        type:'post',
+                        success:function (res) {
+
+                        }
+                         })
+                   }
+        }
+</script>
+</html>

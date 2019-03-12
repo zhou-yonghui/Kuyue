@@ -1,0 +1,501 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>个人信息页面</title>
+    {#    <link rel="stylesheet" href="/static/css/main.css">#}
+    <link rel="stylesheet" href="/static/shineflip_min.js">
+    <style>
+        body {
+            {#background-image: url("/static/image/bg8.png");#}
+            font: 14px Arial, 'Microsoft YaHei';
+            background: #e5e5e5;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #container {
+            background-image: url("/static/image/bg8.png");
+            display: flex;
+            flex-wrap: wrap;
+            width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #header {
+            width: 860px;
+            height: 300px;
+            background: white;
+            margin-left: 20px;
+            border-radius: 5px;
+            border: 1px #b2b2b2 solid;
+        }
+
+        #header_top {
+            width: 950px;
+            height: 300px;
+            margin: 0px;
+            display: flex;
+            background-image: url("/static/image/bg.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+
+        }
+
+        {##header_top img#}
+        {#{#}
+        {#    padding-top: 60px;#}
+        {#    padding-left: 20px;#}
+        {#    width: 120px;#}
+        {#    height: 120px;#}
+        #username {
+            color: white;
+            margin-top: 65px;
+            margin-left: 30px;
+            width: 200px;
+            height: 30px;
+            border-radius: 5px;
+            border: 1px solid darkgrey;
+        {#background: white;#}
+        }
+
+        #username-ID {
+            text-align: center;
+            line-height: 1px;
+            font-size: 17px;
+        }
+
+        #selfhtml {
+
+            margin-right: 10px;
+            margin-top: 67px;
+            border-radius: 15px;
+            border: 1px solid darkgrey;
+        {#background: #1a3aff;#} height: 30px;
+            width: 90px;
+        }
+
+        #selfhtml p {
+            line-height: 0px;
+            padding-left: 10px;
+            font-size: 17px;
+        }
+
+        #set {
+            margin-right: 19px;
+            margin-top: 70px;
+            border-radius: 5px;
+            background-image: url("../static/image/bg11.jpg");
+            background-repeat: no-repeat;
+            background-size: contain;
+            border: 1px solid darkgrey;
+            height: 50px;
+            width: 50px;
+        }
+
+        #menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #menu ul li {
+        {#border: #cccccc 1px solid;#} margin-left: 50px;
+            padding-top: 10px;
+            width: 120px;
+            height: 30px;
+            background-image: url("/static/image/bg5.png");
+        }
+
+        #menu ul li img {
+            float: left;
+            padding-left: 10px;
+        }
+
+        #menu ul li p {
+            line-height: 1px;
+            float: left;
+            text-align: center;
+            padding-left: 10px;
+        }
+
+        #content {
+            width: 1160px;
+            margin-left: 20px;
+        }
+
+        #content h1 {
+            margin-left: 40px;
+        }
+
+        #content hr {
+            width: 1100px;
+        }
+
+        #content ul {
+            margin: 0px;
+            margin-left: 40px;
+            padding: 0px;
+            list-style: none;
+        }
+
+        #content ul li {
+            float: left;
+            width: 200px;
+            height: 190px;
+        }
+
+        #content ul li img {
+            margin: 10px;
+            width: 102px;
+            height: 142px;
+        }
+
+        .wrap a {
+            display: block;
+            width: 220px;
+            height: 330px;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .wrap {
+            width: 220px;
+            height: 330px;
+            position: relative;
+            overflow: hidden;
+            font-family: arial, sans-serif;
+            border: 0;
+            margin: 0 10px;
+            float: left;
+            display: inline;
+        }
+
+        .wrap img {
+            border: 0;
+        }
+
+        .wrap i {
+            display: block;
+            width: 220px;
+            height: 330px;
+            position: absolute;
+            left: 0;
+            top: 300px;
+            z-index: 1;
+            background: #000;
+            filter: alpha(opacity=40);
+            filter: progid:DXImageTransform.Microsoft.Alpha(opacity=40);
+            opacity: 0.40;
+            -webkit-transition: all 0.6s ease-in-out;
+        }
+
+        .wrap p {
+            display: block;
+            width: 155px;
+            height: 330px;
+            position: absolute;
+            left: 0;
+            top: 300px;
+            z-index: 1;
+            background: transparent;
+            font-size: 12px;
+            color: #fff;
+            padding: 0;
+            margin-left: 6.5px;
+            line-height: 16px;
+            -webkit-transition: all 0.6s ease-in-out;
+        }
+
+        .wrap p b {
+            display: block;
+            font-size: 16px;
+            color: #fc0;
+            text-align: center;
+            margin-left: 0px;
+            margin-top: 10px;
+            padding: 0;
+            line-height: 30px;
+            width: auto;
+        }
+
+        .wrap p span {
+            color: white;
+            display: block;
+            padding: 10px;
+            line-height: 20px;
+            font-size: 15px;
+        }
+
+        .wrap a:hover {
+            background: #313131;
+            filter: alpha(opacity=50);
+            -moz-opacity: 0.5;
+            -khtml-opacity: 0.5;
+            opacity: 0.5;
+            direction: ltr;
+        }
+
+        .wrap a:hover i {
+            top: 0;
+        }
+
+        .wrap a:hover p {
+            top: 0;
+        }
+
+        .clear {
+            clear: left;
+        }
+
+        #menu a {
+            text-decoration: none;
+            color: #5e5e5e;
+            transition: all 0.6s;
+        }
+
+        #menu a:hover {
+            color: red;
+        }
+
+        #menu ul li:hover {
+            background: white;
+        }
+
+    </style>
+
+    <style>
+        html, body {
+            padding: 0px;
+            margin: 0px;
+            font-family: 'Raleway', sans-serif;
+            height: 100%;
+        }
+
+
+        .container {
+            width: 200px;
+            max-width: 200px;
+            background: rgba(0, 0, 0, 0.75);
+            margin: 20px auto;
+            margin-top: 0;
+            margin-right: 20px;
+            padding: 10px 0px 20px 0px;
+            border: 1px solid #111;
+            border-radius: 4px;
+            box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.75);
+        }
+
+        .link {
+            font-size: 16px;
+            font-weight: 300;
+            text-align: center;
+            position: relative;
+            height: 40px;
+            line-height: 40px;
+            margin-top: 14px;
+            overflow: hidden;
+            width: 90%;
+            margin-left: 5%;
+            cursor: pointer;
+        }
+
+        .link:after {
+            content: '';
+            position: absolute;
+            width: 80%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            bottom: 50%;
+            left: -100%;
+            transition-delay: all 0.5s;
+            transition: all 0.5s;
+        }
+
+        .link:hover:after,
+        .link.hover:after {
+            left: 100%;
+        }
+
+        .link .text {
+            text-shadow: 0px -40px 0px rgba(255, 255, 255, 1);
+            transition: all 0.75s;
+            transform: translateY(100%) translateZ(0);
+            transition-delay: all 0.25s;
+        }
+
+        .link:hover .text,
+        .link.hover .text {
+            text-shadow: 0px -40px 0px rgba(255, 255, 255, 0);
+            transform: translateY(0%) translateZ(0) scale(1.1);
+            font-weight: 600;
+        }
+
+        .text a {
+            color: white;
+            transition: all 0.6s;
+            text-decoration: none;
+        }
+
+        .wrap {
+            background-image: url("/static/image/bg9.png");
+            float: left;
+            -webkit-transform: rotate(7deg); /*IE9*/
+            -ms-transform: rotate(7deg); /*Firefox*/
+            -moz-transform: rotate(7deg); /*Safari and Chrome*/
+            -o-transform: rotate(7deg); /*Opera*/
+            transform: rotate(7deg); /*常规语法，前面几类针对不同的浏览器要考虑到兼容性的问题*/
+            width: 210px;
+            margin-top: 20px;
+        {#color: #c05016;#} padding: 0px 5px 30px 5px; /*便于美观设计的距离，可以根据页面或需求修改*/
+            border: 2px solid #c05016; /*颜色根据或边框的风格根据喜好修改*/
+            box-shadow: 4px 4px 4px #c05016; /*添加阴影部分（css3）*/
+            margin-bottom: 20px;
+        }
+
+        #introduction {
+            background-image: url("/static/image/bg10.png");
+            width: 600px;
+            height: 140px;
+            border-radius: 5px;
+            border: 1px white solid;
+            overflow: hidden;
+            font-size: 16px;
+            float: left;
+            margin: 0
+        }
+
+        #introduction p {
+            white-space: normal;
+            word-break: break-all;
+            word-wrap: break-word;
+            color: black;
+            font-family: 宋体;
+            font-size: 16.5px;
+        }
+
+    </style>
+
+</head>
+<body>
+<div id="container">
+    <iframe src="/Header/" frameborder="0" width="1200px" height="123.5px"></iframe>
+    <div id="header">
+        <div id="header_top">
+            <div style="display:flex;">
+                <div style="padding: 50px">
+                    {#                    <input type="file" id="btn_file3" name="consignerRdFile">#}
+                    {#                           accept="image/jpg,image/jpeg,image/gif,image/png" style="display:none"#}
+                    {#                           onchange="imgChange(event,'consignerRdSign')">#}
+                    <img id="consignerRdSign" src="{{ user.user_image }}" width="150px" height="150px"
+                         style="border-radius: 100px">
+                </div>
+
+                <div id="username" style="margin-left: 30px;margin-top: 70px">
+                    <p id="username-ID">书友ID:{{ user.user_account }}</p>
+                    <p style="font-size: 17px;margin-top: 10px;border: 1px solid darkgrey;width:70px">个人简介</p>
+                    <div id="introduction"><p
+                            style="margin:0px;text-align: left;height: 100px">{{ user.user_introduction }}</p></div>
+                </div>
+
+                <div style=";width:400px ">
+                    {#                        <div id="selfhtml" style="float: right;margin-right: 60px;color: white">#}
+                    {#                            <p>个人主页</p>#}
+                    {#                        </div>#}
+                    <a href="/selfset/" style="float: right">
+                        <div id="set">
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="link">
+            <div class="text"><a href="/main/">首页</a></div>
+        </div>
+        <div class="link">
+            <div class="text"><a href="/self/">我的书架</a></div>
+        </div>
+        <div class="link">
+            <div class="text"><a href="/shoplog/">用户记录</a></div>
+        </div>
+        <div class="link">
+            <div class="text"><a href="/author/">作家专区</a></div>
+        </div>
+        <div class="link">
+            <div class="text"><a href="/MyTalk/?user_id={{ user.user_id }}">我的书评</a></div>
+        </div>
+        {#        <div class="link">#}
+        {#            <div class="text"><a href="">联系我们</a></div>#}
+        {#        </div>#}
+    </div>
+    {#        <ul>#}
+    {#            <li><img src="/static/image/m1.png" alt="">#}
+    {#                <a href="/main/"><p>首页</p></a></li>#}
+    {#            <li><img src="/static/image/m6.png" alt="">#}
+    {#                <a href=""><p>我的书架</p></a></li>#}
+    {#            <li><a href="/shoplog/"><img src="/static/image/m4.png" alt="">#}
+    {#                <p>交易记录</p></a></li>#}
+    {#            <li><img src="/static/image/m5.png" alt="">#}
+    {#                <a href=""><p>作家专区</p></a></li>#}
+    {#            <li><img src="/static/image/m3.png" alt="">#}
+    {#                <a href=""><p>投票记录</p></a></li>#}
+    {#            <li><img src="/static/image/m2.png" alt="">#}
+    {#                <a href="/MyTalk/"><p>我的书评</p></a></li>#}
+    {#        </ul>#}
+
+    <div id="content">
+        <h1 style="color: black">我的书架</h1>
+        <hr>
+        <ul>
+            {% for row in book_list %}
+               <li id="{{ row.book_id }}" class="wrap" style="width: 150px">
+                    <span name="{{ row.book_id }}" class="shanchu" id="{{ row.book_name }}">删除</span>
+                    <a href="/Details/?book_id={{ row.book_id }}">
+                    <img
+                        style="margin-top:20px;width:130px;height:180px" alt="" src={{ row.book_image }}>
+                    <p><b>{{ row.book_name }}</b><span>{{ row.book_introduction }}</span></p></a></li>
+            {% endfor %}
+        </ul>
+        <hr>
+
+    </div>
+</div>
+</body>
+<script>
+    //For Demo only
+    var links = document.getElementsByClassName('link')
+    for (var i = 0; i <= links.length; i++)
+        addClass(i)
+
+
+    function addClass(id) {
+        setTimeout(function () {
+            if (id > 0) links[id - 1].classList.remove('hover')
+            links[id].classList.add('hover')
+        }, id * 750)
+    }
+</script>
+<script>
+    $(function () {
+        $(".shanchu").click(function () {
+            {#alert(11111111111)#}
+            var val = $(this).attr("name");
+            $("#"+val).remove();
+             $.ajax({
+                url: '/self/',
+                 type: 'GET',
+                 data: {'book': $(this).attr("name")},
+                 success: function (data) {
+                     console.log(data);
+        }
+    })
+            {#alert(val);#}
+        })
+    })
+
+
+</script>
+</html>

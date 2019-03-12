@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作品讨论区</title>
+    <link rel="stylesheet" href="../static/css/search.css">
+    <script type="text/javascript" src="/static/jquery-3.3.1.min.js"></script>
+    <style type="text/css">
+        #backimg{
+            display:none;
+        }
+    </style>
+    <script type="application/javascript">
+        $(document).ready(function(){
+            s=$("#myul").children()
+            if (s.length==0){
+                $("#backimg").show()
+            }
+        })
+    </script>
+</head>
+<body>
+<div id="container">
+    <header>
+        <iframe id="myframe" src="/Header/" width="1200px" FRAMEBORDER="0" height="130px">
+        </iframe>
+    </header>
+    <div>
+    </div>
+    <div id="info">
+
+        <ul id="myul">
+            {% for row in message %}
+
+                    <li>
+                        <div>
+                            <a href="/Details/?book_id={{ row.book_id }}" ><img src="{{ row.book_image }}" alt=""></a>
+                        </div>
+                        <div class="info_container_info">
+                            <a href="/Details/?book_id={{ row.book_id }}" style="color: black"><h4>{{ row.book_name }}</h4></a>
+                            <p class="author">
+                                <a href="/author/?user_id={{ row.user_id }}">{{ row.user_name }}</a>
+                                <em>|</em>
+                                <a>{{ row.kind_name }}</a>
+                                <em>|</em>
+                                <span>{{ row.book_state }}</span>
+                            </p>
+                            <p class="intro">
+                                {{ row.book_introduction }}
+                            </p>
+                        </div>
+                        <div class="bookbox">
+                            <div class="count">
+                                <p>{{ row.book_words }}<span>字数</span></p>
+                            </div>
+                            <div class="button">
+                                <div class="redbutton"><p><a href="/Details/?book_id={{ row.book_id }}">书籍详情</a></p>
+                                </div>
+                                <div class="bluebutton"><p><a href="">加入书架</a></p></div>
+                            </div>
+                        </div>
+                    </li>
+
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="backimg">
+                <img id="imgsd" src="/static/image/nonebook.PNG"/>
+            </div>
+</div>
+</body>
+</html>

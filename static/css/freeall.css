@@ -1,0 +1,45 @@
+.if{
+    margin-bottom: 0px;
+}
+.free-content{
+    width:1200px;
+    display:flex;
+    padding-top: 0px;
+}
+.free-warp{
+    display:flex;
+}
+.free-content a{
+    width:130px;
+    height:40px;
+    font-size:18px;
+    font-weight:bold;
+    float:left;
+    line-height:40px;
+    text-align: center;
+    color:#a6a6a6;
+    border-bottom: 1px solid #a6a6a6 ;
+    text-decoration: none;
+}
+.free-tag-u{
+    padding-left:0px;
+    padding-bottom: 0px;
+}
+.free-tag-u li{
+    float:left;
+    list-style:none;
+    padding:0px;
+}
+.her{
+    height:41px;
+    width:938px;
+    border-bottom: 1px solid #a6a6a6;
+    margin-top:15px;
+}
+.rt1 a{
+     color:red;
+     border-bottom: none;
+    border-top:2px solid #ed4259;
+    border-left:1px solid #a6a6a6;
+    border-right:1px solid #a6a6a6;
+}

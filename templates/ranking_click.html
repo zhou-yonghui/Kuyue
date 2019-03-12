@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>人气榜</title>
+    <link rel="stylesheet" href="/static/css/ranking_list2.css">
+</head>
+<body>
+<div id="container">
+    <header>
+        <iframe src="/Header/" width="1200px" frameborder="0" height="123.5px"></iframe>
+    </header>
+    <div id="hot_list">
+        <div id="hot_list_title">
+            <h3>人气榜单</h3>
+            <img src="/static/image/sc6_ma.png" alt="">
+        </div>
+        <hr>
+        <div id="hot_list_container">
+            <h3>热门作品排行</h3>
+            <ul>
+                <a href="/ranking/click/">
+                    <li>人气榜</li>
+                </a>
+                <a href="/ranking/sell/">
+                    <li>热销榜</li>
+                </a>
+                <a href="/ranking/ticket/">
+                    <li>推荐票榜</li>
+                </a>
+                <a href="/ranking/len/">
+                    <li>字数榜</li>
+                </a>
+            </ul>
+{#            <hr style="border: 0.3px dashed grey">#}
+{#            <h3>其他排行</h3>#}
+{#            <ul>#}
+{#                <a href="/ranking/xuanhuan/">#}
+{#                    <li>玄幻人气榜</li>#}
+{#                </a>#}
+{#                <a href="/ranking/qihuan/">#}
+{#                    <li>奇幻人气榜</li>#}
+{#                </a>#}
+{#                <a href="/ranking/wuxia/">#}
+{#                    <li>武侠人气榜</li>#}
+{#                </a>#}
+{#                <a href="/ranking/xianxia/">#}
+{#                    <li>仙侠人气榜</li>#}
+{#                </a>#}
+{#                <a href="/ranking/dushi/">#}
+{#                    <li>都市人气榜</li>#}
+{#                </a>#}
+{#                <a href="/ranking/xianshi/">#}
+{#                    <li>现实人气榜</li>#}
+{#                </a>#}
+{#                <a href="/ranking/junshi/">#}
+{#                    <li>军事人气榜</li>#}
+{#                </a>#}
+{#                <a href="/ranking/lishi/">#}
+{#                    <li>历史人气榜</li>#}
+{#                </a>#}
+{#                <a href="/ranking/youxi/">#}
+{#                    <li>游戏人气榜</li>#}
+{#                </a>#}
+{#                <a href="/ranking/tiyu/">#}
+{#                    <li>体育人气榜</li>#}
+{#                </a>#}
+{#                <a href="/ranking/kehuan/">#}
+{#                    <li>科幻人气榜</li>#}
+{#                </a>#}
+{#                <a href="/ranking/lingyi/">#}
+{#                    <li>灵异人气榜</li>#}
+{#                </a>#}
+{#                <a href="/ranking/duanpian/">#}
+{#                    <li>短篇人气榜</li>#}
+{#                </a>#}
+{#                <a href="/ranking/erciyuan/">#}
+{#                    <li>二次元人气榜</li>#}
+{#                </a>#}
+{#            </ul>#}
+
+        </div>
+        <hr>
+    </div>
+    <div id="info">
+        <div id="info_title">
+            {% if kind is None or kind == 'None'%}
+            <h1>人气榜<span>当月作品点击数排行</span></h1>
+            {% else %}
+            <h1>{{ kind }}人气榜<span>当月{{ kind }}作品点击数排行</span></h1>
+            {% endif %}
+            <hr>
+        </div>
+        <div id="info_kind">
+            <a href="/ranking/click/?sid={{ 1 }},snum={{ 0 }}" style="color: red" id="all" class="kind_sel">全部分类</a>
+            <em>·</em>
+            <a href="/ranking/click/?sid={{ 1 }},snum={{ 0 }}&kind=玄幻" id="xuanhuan" class="kind_sel">玄幻</a>
+            <em>·</em>
+            <a href="/ranking/click/?sid={{ 1 }},snum={{ 0 }}&kind=奇幻" id="qihuan" class="kind_sel">奇幻</a><em>·</em>
+            <a href="/ranking/click/?sid={{ 1 }},snum={{ 0 }}&kind=武侠" id="wuxia" class="kind_sel">武侠</a><em>·</em>
+            <a href="/ranking/click/?sid={{ 1 }},snum={{ 0 }}&kind=仙侠" id="xianxia" class="kind_sel">仙侠</a><em>·</em>
+            <a href="/ranking/click/?sid={{ 1 }},snum={{ 0 }}&kind=都市" id="dushi" class="kind_sel">都市</a><em>·</em>
+            <a href="/ranking/click/?sid={{ 1 }},snum={{ 0 }}&kind=现实" id="xianshi" class="kind_sel">现实</a><em>·</em>
+            <a href="/ranking/click/?sid={{ 1 }},snum={{ 0 }}&kind=军事" id="junshi" class="kind_sel">军事</a><em>·</em>
+            <a href="/ranking/click/?sid={{ 1 }},snum={{ 0 }}&kind=游戏" id="youxi" class="kind_sel">游戏</a><em>·</em>
+            <a href="/ranking/click/?sid={{ 1 }},snum={{ 0 }}&kind=体育" id="tiyu" class="kind_sel">体育</a><em>·</em>
+            <a href="/ranking/click/?sid={{ 1 }},snum={{ 0 }}&kind=科幻" id="kehuan" class="kind_sel">科幻</a><em>·</em>
+            <a href="/ranking/click/?sid={{ 1 }},snum={{ 0 }}&kind=灵异" id="lingyi" class="kind_sel">灵异</a><em>·</em>
+            <a href="/ranking/click/?sid={{ 1 }},snum={{ 0 }}&kind=历史" id="lishi" class="kind_sel">历史</a><em>·</em>
+            <a href="/ranking/click/?sid={{ 1 }},snum={{ 0 }}&kind=二次元" id="erciyuan" class="kind_sel">二次元</a>
+            </ul>
+        </div>
+        <div id="info_container">
+            <ul>
+                {% for row in result %}
+                    <li>
+                        <div id="imagebox">
+                            <a href="/Details/?book_id={{ row.book_id }}"><img src="{{ row.book_image }}" alt=""></a>
+                        </div>
+                        <div class="info_container_info">
+                            <a href="/Details/?book_id={{ row.book_id }}"><h3
+                                    style="width: auto;margin-top: 7px;color: black">{{ row.book_name }}</h3></a>
+                            <p class="author">
+                                <a href="/author/?user_id={{ row.user_id }}">{{ row.user_name }}</a>
+                                <em>|</em>
+                                <a href="/classify/?type={{ row.kind_name }}">{{ row.kind_name }}</a>
+                                <em>|</em>
+                                <span><a href="/classify/?state={{ row.book_state }}">{{ row.book_state }}</a></span>
+                            </p>
+                            <p class="intro" style="font-size: 13px;font-family: Arial">{{ row.book_introduction }}</p>
+                        </div>
+                        <div class="bookbox">
+                            <div class="count">
+                                <p>{{ row.book_clickcount }}<span>点击</span></p>
+                            </div>
+                            <div class="button">
+                                <div class="redbutton"><p><a href="/Details/?book_id={{ row.book_id }}">书籍详情</a></p>
+                                </div>
+{#                                <div class="bluebutton"><p><a href="">加入书架</a></p></div>#}
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div style="display: flex;margin-left: 250px" id="pagebox">
+        <div style="display: flex;width:200px;margin-right:5px;line-height: 5px">
+            <p style="width: auto;margin-right: 10px">页次<span style="margin-left: 1px;color: red">{{ sid }}</span>/<span
+                    style="margin-left: 1px;color: gray">{{ n }}</span></p>
+            <p style="width: auto;margin-right: 10px">每页<span
+                    style="margin-left: 1px;margin-right: 1px;color: red">5</span>条</p>
+            <p style=" width: auto;">共<span style="margin-left: 1px;margin-right: 1px;color: red">{{ alllen }}</span>部
+            </p>
+        </div>
+        {% if sid != 1 %}
+            <div class="page"
+                 style="margin-left: 50px;width:70px;height: 30px;background: white;border-radius:50px;border:1px solid #cacaca;">
+                <a href="/ranking/click/?sid={{ sid }},snum={{ -1 }}&kind={{ kind }}"><p style='margin-top: 4.5px;text-align: center'>
+                    上一页</p></a>
+            </div>
+        {% endif %}
+        {% if z == 2 or z == 3 %}
+            <div class="page"
+                 style="margin-left: 15px;width: 60px;height: 30px;background: white;border-radius:50px;border:1px solid #cacaca;font-size: 20px;">
+                <a href="/ranking/click/?sid={{ m }},snum={{ 0 }}&kind={{ kind }}"><p
+                        style='margin-top: 4.5px;text-align: center'>首页</p></a>
+            </div>
+            <div><p style="margin-top: 10px;margin-left: 10px">......</p></div>
+        {% endif %}
+        {% for i in list1 %}
+            <b>
+                <div class="page"
+                     style="margin-left: 15px;width: 30px;height: 30px;background: white;border-radius:50px;border:1px solid #cacaca;font-size: 20px;">
+                    <a href="/ranking/click/?sid={{ i }},snum={{ 0 }}&kind={{ kind }}"><p
+                            style='margin-top: 4.5px;text-align: center'>{{ i }}</p></a>
+                </div>
+            </b>
+        {% endfor %}
+        {% if z == 1 or z == 3 %}
+            <div><p style="margin-top: 10px;margin-left: 10px">......</p></div>
+            <div class="page"
+                 style="margin-left: 15px;width: 60px;height: 30px;background: white;border-radius:50px;border:1px solid #cacaca;font-size: 20px;">
+                <a href="/ranking/click/?sid={{ n }},snum={{ 0 }}&kind={{ kind }}"><p
+                        style='margin-top: 4.5px;text-align: center'>尾页 </p></a>
+            </div>
+        {% endif %}
+        {% if sid != length %}
+            <div class="page"
+                 style="margin-left: 50px;width: 70px;height: 30px;background: white;border-radius:50px;border:1px solid #cacaca;">
+                <a href="/ranking/click/?sid={{ sid }},snum={{ 1 }}&kind={{ kind }}"><p style='margin-top: 4.5px;text-align: center'>
+                    下一页</p></a>
+            </div>
+        {% endif %}
+        <div style="margin: 5px;">
+            <form action="/ranking/click/" method="post" style="display: flex">
+                <input type="text" style="width: 40px;margin-right: 10px" name="sid" AUTOCOMPLETE="off" id="txtName" value="{{ sid }}">
+                <input type="text" style="display: none" value="{{ kind }}" name="kind">
+                <input id='jump' type="submit" value="跳转">
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+window.onload=function()
+{
+    alert (().length);
+var oTxt1=document.getElementById('txtName');
+oTxt1.onfocus=function()
+{
+this.value='';
+
+}
+oTxt1.onblur=function()
+{
+if(this.value=='')
+{
+this.value='{{ sid }}';
+}
+}
+}
+</script>
+
+</html>

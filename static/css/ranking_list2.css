@@ -1,0 +1,282 @@
+body {
+    background: white;
+    font: 14px Arial, 'Microsoft YaHei';
+    margin: 0px;
+    padding: 0px;
+}
+
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#hot_list {
+    margin-left: 20px;
+    width: 300px;
+}
+
+#hot_list h3 {
+    color: #ff0b43;
+}
+
+#hot_list_title {
+    display: flex;
+}
+
+#hot_list img {
+    width: 25px;
+    height: 15px;
+    padding-top: 20px;
+    padding-left: 1px;
+}
+
+#hot_list hr {
+    margin: 0;
+    width: 250px;
+    border: 0.5px dashed grey;
+}
+
+#hot_list_container h3 {
+    color: black;
+}
+
+#hot_list_container a {
+    text-decoration: none;
+    color: black;
+}
+
+#hot_list_container a:hover {
+    color: red;
+
+}
+
+#hot_list_container ul li {
+    list-style: none;
+    font-family: 宋体;
+    height: 30px;
+}
+
+#info {
+    width: 800px;
+}
+
+header {
+    width: 1200px;
+    height: 123px;
+}
+
+#info hr {
+    margin: 0;
+    width: 850px;
+    border: 0.7px solid black;
+}
+
+#info_title span {
+    font-family: 宋体;
+    font-size: 14px;
+    color: #cccccc;
+    padding-left: 10px;
+}
+
+#info_kind {
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-image: url("/static/image/bg6.png");
+    border-radius: 5px;
+
+}
+
+/*#info_kind a*/
+/*{*/
+/*color: gray;*/
+/*font-size: 13px;*/
+/*text-decoration: none;*/
+/*}*/
+
+#info_kind em {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#info_container ul {
+    margin: 5px;
+    padding: 0;
+}
+
+#info_container ul li {
+    border-bottom: 0.7px solid grey;
+    display: flex;
+    list-style-type: none;
+    width: 850px;
+    height: 160px;
+    margin-bottom: 20px;
+}
+
+#info_container img {
+    width: 102px;
+    height: 136px;
+
+}
+
+.info_container_info {
+    padding-left: 6px;
+}
+
+.info_container_info h3 {
+    width: 200px;
+    height: 30px;
+    color: black;
+}
+
+#info_container a {
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.6s;
+}
+
+#info_container a:hover {
+    color: red;
+}
+
+.author {
+
+    font-size: 13px;
+    height: 10px;
+}
+
+.author a {
+    margin-top: 0px;
+    color: grey;
+    transition: all 0.6s;
+}
+
+.author a:hover {
+    color: red;
+}
+
+.author em {
+    padding-right: 4px;
+    padding-left: 4px;
+}
+
+.intro {
+    width: 500px;
+    font-size: 15px;
+    font-family: 新宋体;
+    line-height: 22px;
+}
+
+.bookbox {
+    width: 250px;
+    height: 140px;
+}
+
+.count {
+
+    font-size: 12px;
+    padding-top: 30px;
+    padding-left: 150px;
+}
+
+.count span {
+    padding-left: 10px;
+}
+
+.button {
+    display: flex;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.redbutton {
+    line-height: 10px;
+    margin-top: 10px;
+    margin-right: 24px;
+    color: #fff;
+    border-color: #bf2c24;
+    background: #bf2c24;
+    height: 34px;
+    width: 100px;
+}
+
+.redbutton p {
+    padding-left: 21.5px;
+}
+
+.redbutton p a {
+    text-decoration: none;
+    color: white;
+}
+
+.bluebutton {
+    line-height: 10px;
+    margin-top: 10px;
+    color: #fff;
+    border-color: #bf2c24;
+    background: #bf2c24;
+    height: 34px;
+    width: 100px;
+}
+
+.bluebutton p {
+    padding-left: 21.5px;
+}
+
+.bluebutton p a {
+    text-decoration: none;
+    color: white;
+}
+
+.page a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.page :hover {
+    color: red;
+}
+
+#jump {
+    border-radius: 5px;
+    border: 1px black solid;
+    width: 50px;
+    height: 25px;
+    font-weight: bold;
+    background: white;
+}
+
+#jump:hover {
+    border: 1px solid red;
+}
+
+#info_kind a {
+    color: #5e5e5e;
+    transition: all 0.6s;
+    text-decoration: none;
+}
+
+#info_kind a:hover {
+    color: red;
+}
+
+#imagebox {
+
+    width: 102px;
+    height: 136px;
+    overflow: hidden;
+}
+
+#imagebox img {
+    width: 102px;
+    height: 136px;
+    overflow: hidden;
+    transition: all 1s;
+}
+
+#imagebox img:hover {
+    transform: scale(1.2);
+}

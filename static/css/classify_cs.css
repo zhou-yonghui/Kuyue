@@ -1,0 +1,280 @@
+.if{
+    margin-bottom: 0px;
+}
+#panel{
+    margin-bottom: 0px;
+    width:1200px;
+    margin-left:auto;
+    margin-right:auto;
+}
+.second-panel{
+    display:flex;
+}
+.act{
+    background:#262626;
+    color:white;
+}
+.ect{
+    background:none;
+
+}
+#header{
+    width:1200px;
+    background: rgba(210, 210, 210, 0.61);
+    height:40px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#sn{
+    margin-right:300px;
+    line-height: 40px;
+}
+.a1{
+
+    margin-right:30px;
+}
+
+#header img{
+    height:35px;
+    width:2px;
+
+}
+.i1{
+    margin-left:70px;
+    margin-right: 70px;
+}
+#fg{
+    width:240px;
+    height:25px;
+    background:white;
+}
+#fg a{
+    width:34px;
+    height:20px;
+    background: red;
+    color:white;
+    text-decoration: none;
+}
+.select-list{
+    /*float:left;*/
+    width:240px;
+    margin-right:30px;
+}
+#fg {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+#fg1 a{
+    width:34px;
+    height:20px;
+    background: #ed4259;
+    margin-right:5px;
+    color:white;
+}
+.work-filter{
+    margin-bottom: 15px;
+    padding-bottom: 0px;
+    border-bottom: 1px solid #ebebeb;
+    margin-top:20px;
+}
+
+#tha{
+    color:black;
+}
+#tha:active{
+    color:red;
+    font-weight: bold;
+}
+a{
+    text-decoration: none;
+}
+.select-list .work-filter ul li {
+    float: left;
+    height: 20px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    padding-top: 0;
+    padding-right: 4px;
+    padding-bottom: 0;
+    padding-left: 4px;
+    list-style: none outside none;
+    text-align: center;
+    display:flex;
+}
+h3 {
+    display: block;
+    font-weight: bold;
+}
+h4 a{
+    text-decoration: none;
+}
+.select-list .work-filter ul{
+    float:left;
+    width:240px;
+    display:block;
+    list-style: none ;
+    list-style-position: outside;
+    margin: 0;
+    padding: 0;
+
+
+}
+.main-content-wrap{
+    padding-left: 5px;
+    width:954px;
+    display: block;
+}
+.all-img-list-cf {
+    zoom: 1;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+
+    width:954px;
+
+}
+
+.all-img-list-cf li:first-child{
+    padding-top: 0;
+    border-top: none;
+}
+.book-img-text{
+    width:1000px;
+    height:100%;
+    /*display:flex;*/
+
+}
+.all-img-list-cf li{
+    width: 477px;
+    height:250px;
+    padding-bottom:20px;
+    float:left;
+
+
+}
+.all-img-list-cf li a{
+    color:black;
+}
+
+.rt{
+    display: flex;
+    width:477px;
+    height:235px;
+    border-bottom: 1px solid #ebebeb;
+}
+.book-img-box{
+    height:200px;
+    width:150px;
+    display:block;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+
+}
+.book-mid-info{
+    margin-top:0px;
+    height:200px;
+    width:307px;
+    margin-left:20px;
+}
+.intro{
+    /*width:307px;*/
+    display:block;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+}
+.imgs{
+    margin-right:10px;
+    width:150px;
+    height:200px;
+    cursor: pointer;
+    transition: all 1s;
+
+}
+.imgs:hover{
+    transform: scale(1.2);
+
+}
+.page-box-cf{
+    zoom:1;
+    min-height: 25px;
+    padding: 40px 0;
+    display:block;
+
+}
+.lbf-list{
+    float:right;
+}
+.lbf-list li{
+    float:left;
+    list-style: none;
+    padding-right:50px;
+}
+.lbf-item a{
+    width:24px;
+    height:24px;
+    text-decoration: none;
+}
+.lbf-item a:hover{
+    border: solid red 1px;
+}
+.lbf-item a:visited{
+    background: red;
+}
+.lbf-bf1{
+    cursor: default;
+    color: #ccc;
+}
+
+/*行排*/
+.rank-list{
+    text-align: center;
+    width:100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+tbody tr{
+    border-bottom: 1px solid #e6e6e6;
+
+}
+tbody tr:hover{
+    background: #fff7e5;
+}
+tbody tr td{
+    padding-bottom: 10px;
+    padding-top:10px;
+}
+.td-one{
+    font-size:14px;
+    color:gray;
+}
+.num{
+    font-size:12px;
+    color:gray;
+    font-weight: bold;
+}
+
+.ign:hover{
+    transform: scale(1.1);
+}
+
+#backimg{
+    width:954px;
+    display: none;
+}
+
+#imgsd {
+
+    width: 954px;
+    height:555px;
+}
